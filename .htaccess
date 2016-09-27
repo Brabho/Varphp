@@ -1,0 +1,20 @@
+<Files .htaccess>
+    Order deny,allow
+    Deny from all
+    Allow from none
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+)$ index.php/$1 [QSA,L]
+</IfModule>
+
+AddDefaultCharset UTF-8
+Options -Indexes
+
+# Set Root Directory
+SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v2.0/"
+
+# Set Static Error 
+SetEnv ERROR_PATH "__vp/includes/error.php"

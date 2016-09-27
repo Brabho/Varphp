@@ -1,0 +1,30 @@
+<?php
+
+if (!defined('ROOT')) {
+    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+}
+
+class home extends hooks {
+
+    function __construct() {
+
+        parent::__construct();
+
+        require_once ROOT . $this->PATH('ACTIVE_APP') . 'includes/inc_all.php';
+
+        require_once ROOT . $this->PATH('ACTIVE_APP') . 'view/home.php';
+
+        /*
+         * If Direct Call to Home Controller
+         */
+        if ($this->URL('PATHS')[0] === 'home') {
+            $this->ERROR = true;
+            $this->RENDER(ROOT . $this->PATH('ACTIVE_APP') . 'view/error.php');
+        } else {
+            $this->RENDER();
+        }
+    }
+
+}
+
+?>
