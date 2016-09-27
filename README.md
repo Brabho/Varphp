@@ -4,7 +4,6 @@
 PHP MVC Pattern. 
 
 It is a micro framework. No Library or Class/Functions Added.
-
 Use [HelperClass] (https://github.com/krishnaTORQUE/HelperClass)
 
 Fast & LightWeight
