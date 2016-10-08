@@ -5,7 +5,7 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Hook Class (Middle or Joint) 
+ * Hook Class (Middle/Joint)
  * Getting Plugins 
  */
 

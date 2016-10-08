@@ -18,6 +18,7 @@ if (!defined('ROOT')) {
 }
 
 session_start();
+session_regenerate_id(true);
 ob_start();
 
 require_once ROOT . '__vp/system/configure.php';

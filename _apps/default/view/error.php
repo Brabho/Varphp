@@ -10,7 +10,6 @@ $this->META_DETAILS['TITLE'] = 'Error';
 $this->META_DETAILS['DESCRIPTION'] = '';
 $this->META_DETAILS['KEYWORDS'] = '';
 
-require_once ROOT . $this->PATH('ACTIVE_APP') . 'includes/inc_all.php';
 ?>
 
 <div class="main">

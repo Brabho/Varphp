@@ -91,13 +91,13 @@ class render extends urls {
         if ($this->ERROR) {
 
             while (ob_get_contents()) {
-                ob_clean();
+                ob_end_clean();
             }
 
             if (isset($err)) {
                 require_once $err;
             } else {
-                $this->ERROR('e404');
+                $this->ERROR($this->ERROR);
             }
 
             $output_buffer = ob_get_contents();

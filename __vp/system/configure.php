@@ -48,6 +48,10 @@ class configure {
              */
             'NAME' => 'Varphp',
             /*
+             * Local Time Zone
+             */
+            'TIMEZONE' => 'Asia/Kolkata',
+            /*
              * Active Template Directory Name
              */
             'ACTIVE' => 'default',
@@ -63,10 +67,6 @@ class configure {
              * App Environment (develop, publish)
              */
             'ENVT' => 'develop',
-            /*
-             * Local Time Zone
-             */
-            'TIMEZONE' => 'Asia/Kolkata',
             /*
              * Ajax Request From & Request Type
              */
@@ -84,7 +84,7 @@ class configure {
         ];
 
         /*
-         * Keys of Ajax, View/ Controller
+         * Keys of Ajax, View/Controller
          * Private Keys (P = Primary, S = Secondary)
          */
         $this->KEYS = [
@@ -117,7 +117,7 @@ class configure {
          */
         $this->META = [
             'SEPARATE' => ' | ',
-            'DESCRIPTION' => 'PHP MVC Pattern',
+            'DESCRIPTION' => '',
             'KEYWORDS' => '',
             /*
              * This section Will be add in all pages

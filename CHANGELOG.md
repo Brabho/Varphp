@@ -1,5 +1,11 @@
 # Change Log & History
 
+#### 08-10-2016
+	Stable Version 2.1
+	Minor Bug Fixed
+	Review All Files
+	Dynamic Controller Added
+
 #### 27-09-2016
 	Beta Version 2.0
 	

@@ -15,6 +15,7 @@ class error extends hooks {
      */
 
     public function e404() {
+        require_once ROOT . $this->PATH('ACTIVE_APP') . 'includes/inc_all.php';
         require_once ROOT . $this->PATH('ACTIVE_APP') . 'view/error.php';
         $this->RENDER();
     }

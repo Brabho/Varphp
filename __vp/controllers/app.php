@@ -62,6 +62,18 @@ class app extends urls {
                 } else {
                     $error = true;
                 }
+
+                /*
+                 * Dynamic Controller 
+                 */
+            } elseif (file_exists($this->get_file($path . 'dynamic') . '.php')) {
+                $ctrl_file = $this->get_file($path . 'dynamic') . '.php';
+                require_once $ctrl_file;
+                if (class_exists('dynamic')) {
+                    new dynamic($this->URL('PATHS'));
+                } else {
+                    $error = true;
+                }
             } else {
                 $error = true;
             }
@@ -70,7 +82,6 @@ class app extends urls {
              * Calling Method
              */
             if (array_key_exists(1, $this->URL('PATHS')) && method_exists($class, $this->URL('PATHS')[1])) {
-
                 array_shift($param);
                 $method = $this->URL('PATHS')[1];
                 $call->$method($param);

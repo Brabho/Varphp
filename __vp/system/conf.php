@@ -13,13 +13,13 @@ if (file_exists(ROOT . '_config.php')) {
 
 if (class_exists('_config')) {
 
-    class sets extends _config {
+    class get_conf extends _config {
         
     }
 
 } else {
 
-    class sets extends configure {
+    class get_conf extends configure {
         
     }
 
@@ -30,7 +30,7 @@ if (class_exists('_config')) {
  * Private Keys (Controller & Ajax)
  */
 
-class conf extends sets {
+class conf extends get_conf {
 
     function __construct() {
         parent::__construct();

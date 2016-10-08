@@ -14,7 +14,7 @@ AddDefaultCharset UTF-8
 Options -Indexes
 
 # Set Root Directory
-SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v2.0/"
+SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v2.1/"
 
-# Set Static Error 
+# Set Static Error File
 SetEnv ERROR_PATH "__vp/includes/error.php"
