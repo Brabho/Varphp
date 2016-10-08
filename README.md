@@ -9,12 +9,6 @@ Use [HelperClass] (https://github.com/krishnaTORQUE/HelperClass)
 
 Fast & LightWeight
 
-    Let me know:
-        your review.
-        if you found any bug/error.
-
-Thank You
-
 ### Tested
 PHP    (5.5, 5.6)
 
