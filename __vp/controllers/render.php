@@ -38,7 +38,7 @@ class render extends urls {
             $this->META_DETAILS['DESCRIPTION'] = $this->META['DESCRIPTION'];
             $this->META_DETAILS['KEYWORDS'] = $this->META['KEYWORDS'];
         } else {
-            $this->META_DETAILS['TITLE'] = $this->URL('PATHS')[0] . $this->META['SEPARATE'] . $this->APP['NAME'];
+            $this->META_DETAILS['TITLE'] = ucwords($this->URL('PATHS')[0]) . $this->META['SEPARATE'] . $this->APP['NAME'];
             $this->META_DETAILS['DESCRIPTION'] = $this->META['DESCRIPTION'] . $this->META['STICK']['DESCRIPTION'];
             $this->META_DETAILS['KEYWORDS'] = $this->META['KEYWORDS'] . $this->META['STICK']['KEYWORDS'];
         }

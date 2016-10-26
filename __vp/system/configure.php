@@ -32,7 +32,7 @@ class configure {
              */
             'MAIN' => [
                 'HOST' => '127.0.0.1',
-                'DB' => 'varphp_database',
+                'DB_NAME' => 'varphp_database',
                 'USER' => 'root',
                 'PASS' => ''
             ]

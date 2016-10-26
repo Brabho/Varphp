@@ -15,7 +15,7 @@ PHP    (5.5, 5.6)
 Apache (2.2, 2.4)
 
 ### Version 
-Stable Version 2.1
+Stable Version 2.1.1
 
 ### License
 (C) 2013 - 2016 
