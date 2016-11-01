@@ -85,6 +85,8 @@ class app extends urls {
                 array_shift($param);
                 $method = $this->URL('PATHS')[1];
                 $call->$method($param);
+            } elseif (method_exists($class, 'index')) {
+                $call->index($param);
             }
 
             if ($error) {
