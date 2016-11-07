@@ -20,8 +20,6 @@ class configure {
 
     function __construct() {
 
-        $this->EXTRA = [];
-
         /*
          * Default or Main Database Login Details
          */
@@ -135,6 +133,7 @@ class configure {
 
             /*
              * App Protocol (http:// or https://)
+             * Auto Configure **
              */
             'PROTOCOL' => '',
             /*
@@ -142,6 +141,8 @@ class configure {
              */
             'MEMORY_LIMIT' => '16M',
         ];
+
+        $this->EXTRA = [];
     }
 
     /*

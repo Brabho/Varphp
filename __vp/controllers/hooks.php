@@ -5,14 +5,13 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Hook Class (Middle/Joint)
+ * Hook Class (Middle/Joint/Marge)
  * Getting Plugins 
  */
 
 class hooks extends render {
 
     function __construct() {
-
         parent::__construct();
 
         $plugins_path = $this->PATH('PLUGINS');
@@ -22,11 +21,10 @@ class hooks extends render {
             foreach ($plugins_list as $plugin) {
                 if ($plugin === '.' || $plugin === '..') {
                     continue;
-                } else {
-                    $plugin_contl = ROOT . $this->PATH('PLUGINS') . $plugin . '/controller.php';
-                    if ($this->PLUGIN_ACTIVE($plugin) && file_exists($plugin_contl)) {
-                        require_once $plugin_contl;
-                    }
+                }
+                $plugin_contl = ROOT . $this->PATH('PLUGINS') . $plugin . '/controller.php';
+                if ($this->PLUGIN_ACTIVE($plugin) && file_exists($plugin_contl)) {
+                    require_once $plugin_contl;
                 }
             }
         }

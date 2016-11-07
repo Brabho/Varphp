@@ -10,7 +10,7 @@ class home extends hooks {
 
         parent::__construct();
 
-        require_once ROOT . $this->PATH('ACTIVE_APP') . 'includes/inc_all.php';
+        require_once ROOT . $this->PATH('ACTIVE_APP') . 'includes/include_all.php';
 
         require_once ROOT . $this->PATH('ACTIVE_APP') . 'view/home.php';
 

@@ -4,7 +4,9 @@
 ### Description
 PHP MVC Pattern. 
 
-It is a micro framework. No Library or Class/Functions Added.
+It is a micro framework. 
+
+No Library or Class/Functions Added. 
 Use [HelperClass] (https://github.com/krishnaTORQUE/HelperClass)
 
 Fast & LightWeight
@@ -15,7 +17,7 @@ PHP    (5.5, 5.6)
 Apache (2.2, 2.4)
 
 ### Version 
-Stable Version 2.2
+Stable Version 2.3
 
 ### License
 (C) 2013 - 2016 

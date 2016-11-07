@@ -11,7 +11,6 @@ if (!defined('ROOT')) {
 class app extends urls {
 
     function __construct() {
-
         parent::__construct();
 
         if ($this->AJAX()) {
@@ -40,7 +39,7 @@ class app extends urls {
         } else {
 
             /*
-             * If no MainController
+             * If no Main Controller
              */
             $error = false;
             if ($this->HOME()) {

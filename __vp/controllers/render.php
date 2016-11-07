@@ -17,7 +17,6 @@ class render extends urls {
     public $META_DETAILS;
 
     function __construct() {
-
         parent::__construct();
 
         $this->HEADER = ROOT . '__vp/includes/header.php';
