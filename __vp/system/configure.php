@@ -1,5 +1,7 @@
 <?php
 
+namespace VP\System;
+
 if (!defined('ROOT')) {
     require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
@@ -71,9 +73,9 @@ class configure {
             'AJAX' => [
 
                 /*
-                 * Request Type (GET, POST, BOTH)
+                 * Request Method (GET, POST, BOTH)
                  */
-                'REQ' => 'BOTH',
+                'METHOD' => 'BOTH',
                 /*
                  * Request From (IN, OUT, BOTH)
                  */
@@ -94,7 +96,7 @@ class configure {
                 'P' => '',
                 'S' => '',
                 /*
-                 * Query String Method Name 
+                 * Method Name in Query String
                  */
                 'QUERY' => 'm',
             ],
@@ -151,11 +153,12 @@ class configure {
 
     public function PATH($name = null, $sub = null) {
         $allDirs = [
-            'VP' => '__vp/',
-            'SYS' => '__vp/system/',
+            'VP' => '__VP/',
+            'SYS' => '__VP/system/',
             'APPS' => '_apps/',
             'ACTIVE_APP' => '_apps/' . $this->APP['ACTIVE'] . '/',
             'PLUGINS' => '_plugins/',
+            'AUTOLOAD' => '_autoload/',
             'TMP' => '_temp/',
         ];
 
@@ -191,7 +194,7 @@ class configure {
     }
 
     /*
-     * Check Plugin Exists
+     * Checking Plugin Exists & Plugin Active
      */
 
     public function PLUGIN_ACTIVE($name) {

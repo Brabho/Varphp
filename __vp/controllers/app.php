@@ -1,11 +1,15 @@
 <?php
 
+namespace VP\Controller;
+
+use VP\Controller\urls;
+
 if (!defined('ROOT')) {
     require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 /*
- * Getting App
+ * Getting App Controllers
  */
 
 class app extends urls {
@@ -21,26 +25,28 @@ class app extends urls {
     }
 
     /*
-     * View or Render
+     * App View Controller
      */
 
-    public function view_ctrl() {
+    private function view_ctrl() {
         $path = ROOT . $this->PATH('ACTIVE_APP');
 
         /*
          * MainController (Check & Call)
          */
+
         $mainController = $this->get_file($path . 'maincontroller') . '.php';
         if (file_exists($mainController)) {
             require_once $mainController;
             if (class_exists('mainController')) {
-                new mainController();
+                new \mainController();
             }
         } else {
 
             /*
              * If no Main Controller
              */
+
             $error = false;
             if ($this->HOME()) {
                 $class = 'home';
@@ -51,6 +57,7 @@ class app extends urls {
             /*
              * Getting Controller (File and Class)
              */
+
             $ctrl_file = $this->get_file($path . $class) . '.php';
             if (file_exists($ctrl_file)) {
                 require_once $ctrl_file;
@@ -69,7 +76,7 @@ class app extends urls {
                 $ctrl_file = $this->get_file($path . 'dynamic') . '.php';
                 require_once $ctrl_file;
                 if (class_exists('dynamic')) {
-                    new dynamic($this->URL('PATHS'));
+                    new \dynamic($this->URL('PATHS'));
                 } else {
                     $error = true;
                 }
@@ -80,6 +87,7 @@ class app extends urls {
             /*
              * Calling Method
              */
+
             if (array_key_exists(1, $this->URL('PATHS')) && method_exists($class, $this->URL('PATHS')[1])) {
                 array_shift($param);
                 $method = $this->URL('PATHS')[1];
@@ -96,71 +104,72 @@ class app extends urls {
     }
 
     /*
-     * Ajax Controller
+     * App Ajax Controller
      */
 
-    public function ajax_ctrl() {
+    private function ajax_ctrl() {
 
         /*
-         * Request Type Auth
+         * Auth: Request Method
          */
+
         $req = null;
-        switch ($this->APP['AJAX']['REQ']) {
+        switch ($this->APP['AJAX']['METHOD']) {
 
             case 'GET':
-                if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                if ($this->AJAX_DETAILS['METHOD'] === 'GET') {
                     $req = true;
                 }
                 break;
 
             case 'POST':
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($this->AJAX_DETAILS['METHOD'] === 'POST') {
                     $req = true;
                 }
                 break;
 
             case 'BOTH':
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
+                if ($this->AJAX_DETAILS['METHOD'] === 'GET' || $this->AJAX_DETAILS['METHOD'] === 'POST') {
                     $req = true;
                 }
                 break;
         }
 
         /*
-         * Request From Auth
+         * Auth: Request From
          */
+
         $from = null;
-        if (isset($_SERVER['HTTP_REFERER'])) {
+        $pattern = '@' . $_SERVER['HTTP_REFERER'] . '@';
+        $subject = $this->URL('FULL');
 
-            $pattern = '@' . $_SERVER['HTTP_REFERER'] . '@';
-            $subject = $this->URL('FULL');
+        switch ($this->APP['AJAX']['FROM']) {
 
-            switch ($this->APP['AJAX']['FROM']) {
-
-                case 'IN':
-                    if (preg_match($pattern, $subject)) {
-                        $from = true;
-                    }
-                    break;
-
-                case 'OUT':
-                    if (!preg_match($pattern, $subject)) {
-                        $from = true;
-                    }
-                    break;
-
-                case 'BOTH':
+            case 'IN':
+                if ($this->AJAX_DETAILS['FROM'] === 'IN') {
                     $from = true;
-            }
+                }
+                break;
+
+            case 'OUT':
+                if ($this->AJAX_DETAILS['FROM'] === 'OUT') {
+                    $from = true;
+                }
+                break;
+
+            case 'BOTH':
+                $from = true;
         }
 
         /*
-         * Valid Auth
+         * Auth: Requested Type
          */
+
+        $path = null;
         if (isset($req, $from)) {
-            if ($this->AJAX() === 'header') {
+            if ($this->AJAX_DETAILS['REQUESTED'] === 'HEADER') {
                 $path = $this->get_file($this->URL('FPATH'), 'ajax');
-            } elseif ($this->AJAX() === 'url') {
+            } elseif ($this->AJAX_DETAILS['REQUESTED'] === 'URL') {
                 $path = $this->get_file(substr($this->URL('FPATH'), 5), 'ajax');
             }
         }
@@ -169,6 +178,7 @@ class app extends urls {
          * Calling File
          * Class, Method (if exists)
          */
+
         if (isset($path) && file_exists($path . '.php')) {
 
             require_once $path . '.php';

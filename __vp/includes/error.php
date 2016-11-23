@@ -1,4 +1,8 @@
 <?php
+if (!defined('ROOT')) {
+    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+}
+
 while (ob_get_contents()) {
     ob_end_clean();
 }
@@ -13,18 +17,18 @@ header('Status: 404 Not Found');
         <title>Error</title>
         <style type="text/css">
             body{
-                background: #f5f5f5;
+                background: #fafafa;
                 font-family: Tahoma, Helvetica, Arial, sans-serif;
             }
             .main{
-                background: #fff;
-                box-shadow: 0 0 25px #bbb;
-                border: 1px solid #aaa;
+                background: #fdfdfd;
+                border: 2px dashed #aaa;
                 width: 40%;
                 border-radius: 5px;
-                margin: 10% auto;
+                margin: 5% auto;
                 padding: 15px;
                 text-align: center;
+                text-shadow: 1px 1px #fff;
             }
         </style>
     </head>
@@ -35,7 +39,4 @@ header('Status: 404 Not Found');
             <h1>Down For Maintain</h1>
         </div>
     </body>
-</html>
-<?php
-die();
-?>
+</html> <?php die(); ?>

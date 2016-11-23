@@ -1,15 +1,6 @@
 <?php
 
 /*
- * 
-    __     __               _           
-    \ \   / __ _ _ __ _ __ | |__  _ __  
-     \ \ / / _` | '__| '_ \| '_ \| '_ \ 
-      \ V | (_| | |  | |_) | | | | |_) |
-       \_/ \__,_|_|  | .__/|_| |_| .__/ 
-                     |_|         |_|    
- *
- *
  * Main BootLoader/BootStrap
  */
 
@@ -21,17 +12,27 @@ session_start();
 session_regenerate_id(true);
 ob_start();
 
-require_once ROOT . '__vp/system/configure.php';
+/*
+ * Getting Configuration
+ */
 
-require_once ROOT . '__vp/system/conf.php';
+require_once ROOT . '__VP/system/configure.php';
 
-require_once ROOT . '__vp/controllers/urls.php';
+require_once ROOT . '__VP/system/get_conf.php';
 
-require_once ROOT . '__vp/controllers/render.php';
+require_once ROOT . '__VP/system/conf.php';
 
-require_once ROOT . '__vp/controllers/hooks.php';
+/*
+ * Getting Controllers
+ */
 
-require_once ROOT . '__vp/controllers/app.php';
+require_once ROOT . '__VP/controllers/urls.php';
 
-new app();
+require_once ROOT . '__VP/controllers/render.php';
+
+require_once ROOT . '__VP/controllers/hooks.php';
+
+require_once ROOT . '__VP/controllers/app.php';
+
+new VP\Controller\app();
 ?>

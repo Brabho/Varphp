@@ -6,6 +6,7 @@ if (!defined('ROOT')) {
 /*
  * Default Footer
  */
+
 $this->CALL_FUNCS('IN_FOOTER');
 ?>
 

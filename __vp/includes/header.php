@@ -8,6 +8,7 @@ $this->CALL_FUNCS('BEFORE_HEAD');
 /*
  * Default Header
  */
+
 echo $this->TAGS['DOCTYPE'] . PHP_EOL;
 echo $this->TAGS['HTML'] . PHP_EOL;
 echo $this->TAGS['HEAD'] . PHP_EOL;
@@ -30,4 +31,7 @@ $this->CALL_FUNCS('IN_HEAD');
 ?>
 
 </head>
-<?php echo $this->TAGS['BODY'] . PHP_EOL; ?>
+<?php
+echo $this->TAGS['BODY'] . PHP_EOL;
+$this->CALL_FUNCS('IN_BODY');
+?>

@@ -1,10 +1,20 @@
 <?php
 
+namespace VP\Controller;
+
+use VP\System\conf;
+
 if (!defined('ROOT')) {
     require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
+/*
+ * URL/URI Class
+ */
+
 class urls extends conf {
+
+    public $AJAX_DETAILS;
 
     function __construct() {
         parent::__construct();
@@ -48,6 +58,53 @@ class urls extends conf {
     }
 
     /*
+     * Checking Ajax Request 
+     */
+
+    public function AJAX() {
+        $status = false;
+        $header = getallheaders();
+        if (isset($header['HTTP_X_REQUESTED_WITH']) && $header['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
+            $status = true;
+
+            $this->AJAX_DETAILS = [];
+            $this->AJAX_DETAILS['REQUESTED'] = 'HEADER';
+        } elseif (isset($header['X-Requested-With']) && $header['X-Requested-With'] === 'XMLHttpRequest') {
+            $status = true;
+
+            $this->AJAX_DETAILS = [];
+            $this->AJAX_DETAILS['REQUESTED'] = 'HEADER';
+        } elseif ($this->URL('PATHS')[0] === 'ajax') {
+            $status = true;
+
+            $this->AJAX_DETAILS = [];
+            $this->AJAX_DETAILS['REQUESTED'] = 'URL';
+        }
+
+        /*
+         * Request From
+         */
+
+        if ($status === true && isset($this->AJAX_DETAILS, $_SERVER['HTTP_REFERER'])) {
+
+            $this->AJAX_DETAILS['METHOD'] = $_SERVER['REQUEST_METHOD'];
+            $this->AJAX_DETAILS['REFERER'] = $header['Referer'];
+
+            $pattern = '@' . $_SERVER['HTTP_REFERER'] . '@';
+            $subject = $this->URL('FULL');
+
+            if (preg_match($pattern, $subject)) {
+                $this->AJAX_DETAILS['FROM'] = 'IN';
+            } elseif (!preg_match($pattern, $subject)) {
+                $this->AJAX_DETAILS['FROM'] = 'OUT';
+            }
+        }
+
+        unset($header);
+        return $status;
+    }
+
+    /*
      * Home Page (Return Bool)
      */
 
@@ -60,22 +117,6 @@ class urls extends conf {
         } else {
             return false;
         }
-    }
-
-    /*
-     * Check Ajax Request 
-     */
-
-    public function AJAX() {
-        $header = getallheaders();
-        if (isset($header['HTTP_X_REQUESTED_WITH']) && $header['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
-            return 'header';
-        } elseif (isset($header['X-Requested-With']) && $header['X-Requested-With'] === 'XMLHttpRequest') {
-            return 'header';
-        } elseif ($this->URL('PATHS')[0] === 'ajax') {
-            return 'url';
-        }
-        return false;
     }
 
     function __destruct() {

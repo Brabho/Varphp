@@ -1,5 +1,21 @@
 # Change Log & History
 
+#### 23-11-2016
+    Stable Version 2.5
+    Review All Files
+
+    Added:
+        Autoloader
+        NameSpace
+        Ajax Details
+
+    Changed:
+        `_vp` > `_VP`
+
+    Bugs Fixed:
+        Ajax Controller
+        In Body Plug
+
 #### 07-11-2016
     Stable Version 2.3
     Few Minor Bugs Fixed

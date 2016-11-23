@@ -4,7 +4,7 @@ if (!defined('ROOT')) {
     require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
-class error extends hooks {
+class error extends VP\Controller\hooks {
 
     function __construct($error = null) {
         parent::__construct();

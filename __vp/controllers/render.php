@@ -1,5 +1,9 @@
 <?php
 
+namespace VP\Controller;
+
+use VP\Controller\urls;
+
 if (!defined('ROOT')) {
     require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
@@ -87,6 +91,7 @@ class render extends urls {
          * 
          * If Error
          */
+
         if ($this->ERROR) {
 
             while (ob_get_contents()) {

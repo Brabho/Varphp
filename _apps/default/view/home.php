@@ -5,7 +5,9 @@ if (!defined('ROOT')) {
 ?>
 <div class="main">
 
-    <h2 style="text-align: center">Welcome to Varphp ($P)</h2>
+    <img src="<?php echo $this->URL('APP') . $this->PATH('ACTIVE_APP'); ?>icon1.png"/>
+
+    <h2 style="text-align: center">Welcome to Varphp</h2>
 
     <h4>URL: <?php echo $this->URL('APP'); ?></h4>
 

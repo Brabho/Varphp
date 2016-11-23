@@ -1,33 +1,11 @@
 <?php
 
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
-}
+namespace VP\System;
+
+use VP\System\get_conf;
 
 /*
- * Get User Define Configure and Marge
- */
-if (file_exists(ROOT . '_config.php')) {
-    require_once ROOT . '_config.php';
-}
-
-if (class_exists('_config')) {
-
-    class get_conf extends _config {
-        
-    }
-
-} else {
-
-    class get_conf extends configure {
-        
-    }
-
-}
-
-/*
- * Set Configuration 
- * Private Keys (Controller & Ajax)
+ * Set Configuration
  */
 
 class conf extends get_conf {
@@ -50,7 +28,7 @@ class conf extends get_conf {
             require_once $path . 'error.php';
 
             if (class_exists('error')) {
-                $class = new error($arg);
+                $class = new \error($arg);
             } else {
                 require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
             }
@@ -65,6 +43,7 @@ class conf extends get_conf {
 
     /*
      * Real File
+     * Actual File Name
      */
 
     public function get_file($path, $type = 'CONTROLLER') {
@@ -82,6 +61,7 @@ class conf extends get_conf {
 
     /*
      * File Name
+     * Alice Name
      */
 
     public function get_name($path, $type = 'CONTROLLER') {
