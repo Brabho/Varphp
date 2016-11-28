@@ -21,20 +21,21 @@ class hooks extends render {
     }
 
     /*
-     * Getting Autoloader
+     * Getting Autoloads
      */
 
     private function gettingAutoload() {
-        $autoload_path = $this->PATH('AUTOLOAD');
+        $autoload_path = ROOT . $this->PATH('AUTOLOAD');
         if (file_exists($autoload_path)) {
             $autoload_list = scandir($autoload_path);
             foreach ($autoload_list as $autoload) {
                 if ($autoload === '.' || $autoload === '..') {
                     continue;
                 }
-                require_once ROOT . $autoload_path . $autoload;
+                require_once $autoload_path . $autoload;
             }
         }
+        unset($autoload_path, $autoload_list, $autoload);
     }
 
     /*
@@ -42,7 +43,7 @@ class hooks extends render {
      */
 
     private function gettingPlugins() {
-        $plugins_path = $this->PATH('PLUGINS');
+        $plugins_path = ROOT . $this->PATH('PLUGINS');
         if (file_exists($plugins_path)) {
             $plugins_list = scandir($plugins_path);
 
@@ -50,7 +51,7 @@ class hooks extends render {
                 if ($plugin === '.' || $plugin === '..') {
                     continue;
                 }
-                $plugin_contl = ROOT . $plugins_path . $plugin . '/controller.php';
+                $plugin_contl = $plugins_path . $plugin . '/controller.php';
                 if ($this->PLUGIN_ACTIVE($plugin) && file_exists($plugin_contl)) {
                     require_once $plugin_contl;
                 }

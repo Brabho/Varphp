@@ -14,7 +14,7 @@ Options -Indexes
 </IfModule>
 
 ## Set Root Path
-SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v2.5/"
+SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v2.6/"
 
 ## Set Static Error File Path
-SetEnv ERROR_PATH "__vp/includes/error.php"
+SetEnv ERROR_PATH "__VP/includes/error.php"

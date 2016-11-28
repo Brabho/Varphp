@@ -20,7 +20,7 @@ class conf extends get_conf {
      */
 
     protected function ERROR($arg = null) {
-        if (ob_get_contents()) {
+        while (ob_get_contents()) {
             ob_end_clean();
         }
         $path = ROOT . $this->PATH('ACTIVE_APP');

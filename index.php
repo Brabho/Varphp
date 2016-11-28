@@ -8,7 +8,7 @@
        \_/ \__,_|_|  | .__/|_| |_| .__/ 
                      |_|         |_|    
 
-              Version: 2.5
+              Version: 2.6
          Develop By Club Coding
 */
 
@@ -23,5 +23,5 @@ if (strlen($SCRIPT_NAME) > 1) {
 }
 unset($SCRIPT_NAME);
 
-require_once '__vp/system/boot.php';
+require_once '__VP/system/boot.php';
 ?>

@@ -23,8 +23,8 @@ class render extends urls {
     function __construct() {
         parent::__construct();
 
-        $this->HEADER = ROOT . '__vp/includes/header.php';
-        $this->FOOTER = ROOT . '__vp/includes/footer.php';
+        $this->HEADER = ROOT . $this->PATH('VP', 'includes') . 'header.php';
+        $this->FOOTER = ROOT . $this->PATH('VP', 'includes') . 'footer.php';
         $this->ERROR = false;
 
         $this->ADD_FUNC = [

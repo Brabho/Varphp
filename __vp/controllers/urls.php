@@ -109,14 +109,12 @@ class urls extends conf {
      */
 
     public function HOME() {
-
         if ($this->URL('APP') === $this->URL('FULL')) {
             return true;
         } elseif (strlen($this->URL('FPATH')) < 1 || strlen($this->URL('PATHS')[0]) < 1) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     function __destruct() {

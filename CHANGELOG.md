@@ -1,5 +1,9 @@
 # Change Log & History
 
+#### 28-11-2016
+    Stable Version 2.6
+    Few Major Bugs Fixed
+
 #### 23-11-2016
     Stable Version 2.5
     Review All Files
@@ -11,6 +15,7 @@
 
     Changed:
         `_vp` > `_VP`
+        Ajax Key `REQ` > `METHOD`
 
     Bugs Fixed:
         Ajax Controller
