@@ -53,7 +53,7 @@ class urls extends conf {
             'QUERIES' => $QUERIES,
         ];
 
-        unset($full, $fpath, $query);
+        unset($full, $fpath, $query, $qstre, $QUERIES);
         return (array_key_exists($name, $urls)) ? $urls[$name] : $urls;
     }
 

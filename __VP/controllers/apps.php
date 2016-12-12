@@ -9,10 +9,10 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Getting App Controllers
+ * Getting Apps Sub Controllers
  */
 
-class app extends urls {
+class apps extends urls {
 
     function __construct() {
         parent::__construct();

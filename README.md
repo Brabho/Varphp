@@ -1,32 +1,30 @@
 ![Alt text](_apps/default/icon1.png?raw=true "Varphp")
 # Varphp
 
-### Description
-PHP MVC Pattern. (Model View Controller)
+### Develop By [Club Coding] (http://clubcoding.com/)
 
-It is a micro MVC framework.
+### Description
+PHP micro MVC Pattern. (Model View Controller)
 
 No Library or Class/Functions Added. 
 Use [HelperClass] (https://github.com/krishnaTORQUE/HelperClass) Instead.
 
-Fast & LightWeight
+Fast, LightWeight & Powerful
 
 ### Tested
-PHP    (5.5, 5.6)
+PHP     (5.5, 5.6)
 
-Apache (2.2, 2.4)
+Apache  (2.2, 2.4)
 
 ### Require
 Rewrite Module On
 
 ### Version 
-Stable Version 2.6
+Stable Version 2.6.4
 
 ### License
 (C) 2013 - 2016 
 under GNU General Public License Version 2.
-
-### Develop By [Club Coding] (http://clubcoding.com/)
 
 ### Example
 ```php
@@ -40,6 +38,9 @@ class _config extends VP\System\configure {
     }
 }
 
-# To use autoloader #
+# Using Plugins #
+# Create `_plugins` folder in root directory and paste your plugin(s).
+
+# Using Autoloader #
 # Create `_autoload` folder in root directory and paste your class file.
 ```

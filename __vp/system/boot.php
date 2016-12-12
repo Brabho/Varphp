@@ -32,7 +32,7 @@ require_once ROOT . '__VP/controllers/render.php';
 
 require_once ROOT . '__VP/controllers/hooks.php';
 
-require_once ROOT . '__VP/controllers/app.php';
+require_once ROOT . '__VP/controllers/apps.php';
 
-new VP\Controller\app();
+new VP\Controller\apps();
 ?>

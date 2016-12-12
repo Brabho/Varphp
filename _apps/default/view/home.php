@@ -19,4 +19,16 @@ if (!defined('ROOT')) {
         file and Class in root directory and set Configuration.
     </div>
 
+    <br/>
+
+    <div>Create <code style="font-weight: bold; font-size: 16px;">`_plugins`</code> 
+        folder in root directory and paste your plugins.
+    </div>
+
+    <br/>
+
+    <div>Create <code style="font-weight: bold; font-size: 16px;">`_autoload`</code> 
+        folder in root directory and paste your autoload files.
+    </div>
+
 </div>

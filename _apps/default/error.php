@@ -11,7 +11,7 @@ class error extends VP\Controller\hooks {
     }
 
     /*
-     * 404 Error
+     * Error 404
      */
 
     public function e404() {

@@ -135,7 +135,7 @@ class configure {
 
             /*
              * App Protocol (http:// or https://)
-             * Auto Configure **
+             * Auto Configure, If Empty **
              */
             'PROTOCOL' => '',
             /*
@@ -207,7 +207,7 @@ class configure {
     }
 
     /*
-     * Set Configuration 
+     * Set Configuration
      * Do not call this Method **
      */
 

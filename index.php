@@ -8,7 +8,7 @@
        \_/ \__,_|_|  | .__/|_| |_| .__/ 
                      |_|         |_|    
 
-              Version: 2.6
+            Version: 2.6.4
          Develop By Club Coding
 */
 

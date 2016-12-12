@@ -25,7 +25,7 @@ header('Status: 404 Not Found');
                 border: 2px dashed #aaa;
                 width: 40%;
                 border-radius: 5px;
-                margin: 5% auto;
+                margin: 10% auto;
                 padding: 15px;
                 text-align: center;
                 text-shadow: 1px 1px #fff;

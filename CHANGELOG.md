@@ -1,5 +1,10 @@
 # Change Log & History
 
+#### 12-12-2016
+    Stable Version 2.6.4
+    Stability Improved
+    Review All Files
+
 #### 28-11-2016
     Stable Version 2.6
     Few Major Bugs Fixed

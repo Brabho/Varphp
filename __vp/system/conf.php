@@ -4,11 +4,10 @@ namespace VP\System;
 
 use VP\System\get_conf;
 
-/*
- * Set Configuration
- */
-
 class conf extends get_conf {
+    /*
+     * Set Configuration
+     */
 
     function __construct() {
         parent::__construct();
