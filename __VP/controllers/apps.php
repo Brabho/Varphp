@@ -88,12 +88,22 @@ class apps extends urls {
              * Calling Method
              */
 
-            if (array_key_exists(1, $this->URL('PATHS')) && method_exists($class, $this->URL('PATHS')[1])) {
-                array_shift($param);
-                $method = $this->URL('PATHS')[1];
-                $call->$method($param);
-            } elseif (method_exists($class, 'index')) {
-                $call->index($param);
+            if (isset($call)) {
+                if (array_key_exists(1, $this->URL('PATHS'))) {
+                    if (method_exists($class, $this->URL('PATHS')[1])) {
+                        array_shift($param);
+                        $method = $this->URL('PATHS')[1];
+                        $call->$method($param);
+                    } elseif (method_exists($class, 'dynamic')) {
+                        $call->dynamic($param);
+                    } else {
+                        $error = true;
+                    }
+                } elseif (method_exists($class, 'index')) {
+                    $call->index($param);
+                } else {
+                    $error = true;
+                }
             }
 
             if ($error) {

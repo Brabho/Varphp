@@ -20,7 +20,7 @@ Apache  (2.2, 2.4)
 Rewrite Module On
 
 ### Version 
-Stable Version 2.6.4
+Stable Version 2.7
 
 ### License
 (C) 2013 - 2016 

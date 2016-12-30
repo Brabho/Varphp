@@ -27,7 +27,7 @@ class urls extends conf {
     public function URL($name = '') {
 
         $full = $this->OPT['PROTOCOL'] . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        $full = trim($full, " \/\s\t\n\r\0\x0B");
+        $full = trim($full, " \/\t\n\r");
         $full = htmlspecialchars($full, ENT_QUOTES, 'UTF-8');
 
         $fpath = parse_url($full, PHP_URL_PATH);
@@ -54,7 +54,7 @@ class urls extends conf {
         ];
 
         unset($full, $fpath, $query, $qstre, $QUERIES);
-        return (array_key_exists($name, $urls)) ? $urls[$name] : $urls;
+        return (array_key_exists($name, $urls)) ? $urls[$name] : false;
     }
 
     /*
@@ -111,10 +111,13 @@ class urls extends conf {
     public function HOME() {
         if ($this->URL('APP') === $this->URL('FULL')) {
             return true;
-        } elseif (strlen($this->URL('FPATH')) < 1 || strlen($this->URL('PATHS')[0]) < 1) {
+        } elseif (strlen($this->URL('FPATH')) < 1) {
             return true;
+        } elseif (strlen($this->URL('PATHS')[0]) < 1) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     function __destruct() {

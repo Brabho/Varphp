@@ -8,8 +8,8 @@
        \_/ \__,_|_|  | .__/|_| |_| .__/ 
                      |_|         |_|    
 
-            Version: 2.6.4
-         Develop By Club Coding
+            Version: 2.7
+       Develop By Club Coding
 */
 
 define('ROOT', str_ireplace('\\', '/', dirname(__FILE__)) . '/');

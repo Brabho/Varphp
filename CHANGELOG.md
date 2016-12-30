@@ -1,5 +1,10 @@
 # Change Log & History
 
+#### 30-12-2016
+    Stable Version 2.7
+    Dynamic Method Added
+    Method Bug Fixed
+
 #### 12-12-2016
     Stable Version 2.6.4
     Stability Improved
