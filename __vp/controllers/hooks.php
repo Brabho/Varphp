@@ -9,7 +9,7 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Hooks Class 
+ * Hooks Class
  * [Middle/Joint/Marge]
  */
 

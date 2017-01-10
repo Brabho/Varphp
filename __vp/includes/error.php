@@ -18,7 +18,7 @@ header('Status: 404 Not Found');
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Error</title>
+        <title>404 Error</title>
         <style type="text/css">
             body{
                 background: #fafafa;

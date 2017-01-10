@@ -9,7 +9,6 @@ if (!defined('ROOT')) {
 /*
  * Main Configure Class File
  */
-
 class configure {
 
     public $DB;
@@ -160,7 +159,6 @@ class configure {
     /*
      * Default Paths
      */
-
     public function PATH($name = null, $sub = null) {
         $allDirs = [
             'VP' => '__VP/',
@@ -199,7 +197,6 @@ class configure {
      * Get Maintain Mode
      * [Return Bool]
      */
-
     public function MAINTAIN() {
         return ($this->APP['MODE'] === 'maintain' || file_exists('.maintain')) ? true : false;
     }
@@ -208,7 +205,6 @@ class configure {
      * Checking Plugin Exists 
      * Plugin Active
      */
-
     public function PLUGIN_ACTIVE($name) {
         if (in_array($name, $this->APP['ACTIVE_PLUGINS']) && is_dir(ROOT . $this->PATH('PLUGINS'))) {
             return $this->PATH('PLUGINS') . $name . '/';
@@ -222,7 +218,6 @@ class configure {
      * Set Configuration
      * Do not call this Method **
      */
-
     protected function SETS() {
 
         switch ($this->APP['ENVT']) {

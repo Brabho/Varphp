@@ -9,7 +9,7 @@ if (!defined('ROOT')) {
 }
 
 /*
- * URL/URI Class
+ * URLs/URIs Class
  */
 
 class urls extends conf {

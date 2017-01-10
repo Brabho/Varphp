@@ -10,6 +10,7 @@ if (!defined('ROOT')) {
 
 /*
  * Render Class
+ * Rendering Output
  */
 
 class render extends urls {

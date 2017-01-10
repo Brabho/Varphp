@@ -6,7 +6,7 @@ use VP\System\get_conf;
 
 class conf extends get_conf {
     /*
-     * Set Configuration
+     * Setup Configuration
      */
 
     function __construct() {
@@ -44,7 +44,6 @@ class conf extends get_conf {
      * Real File
      * [Actual File Name]
      */
-
     public function get_file($path, $type = 'CONTROLLER') {
         $call_file = basename($path);
 
@@ -62,7 +61,6 @@ class conf extends get_conf {
      * File Name
      * [Alice Name]
      */
-
     public function get_name($path, $type = 'CONTROLLER') {
         $call_file = basename($path);
 

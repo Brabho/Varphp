@@ -4,11 +4,9 @@ if (!defined('ROOT')) {
 }
 
 $this->CALL_FUNCS('BEFORE_HEAD');
-
 /*
  * Default Header File
  */
-
 echo $this->TAGS['DOCTYPE'] . PHP_EOL;
 echo $this->TAGS['HTML'] . PHP_EOL;
 echo $this->TAGS['HEAD'] . PHP_EOL;
