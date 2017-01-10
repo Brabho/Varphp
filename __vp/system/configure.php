@@ -48,7 +48,7 @@ class configure {
              */
             'NAME' => 'Varphp',
             /*
-             * Local Time Zone
+             * App Time Zone
              */
             'TIMEZONE' => 'Asia/Kolkata',
             /*
@@ -60,32 +60,38 @@ class configure {
              */
             'ACTIVE_PLUGINS' => [],
             /*
-             * App Mode (run, maintain)
+             * App Mode
+             * [run, maintain]
              */
             'MODE' => 'run',
             /*
-             * App Environment (develop, publish)
+             * App Environment
+             * [develop, publish]
              */
             'ENVT' => 'develop',
             /*
-             * Ajax Request From & Request Type
+             * Ajax Request From
+             * Ajax Request Type
              */
             'AJAX' => [
 
                 /*
-                 * Request Method (GET, POST, BOTH)
+                 * Request Method 
+                 * [GET, POST, BOTH]
                  */
                 'METHOD' => 'BOTH',
                 /*
-                 * Request From (IN, OUT, BOTH)
+                 * Request From 
+                 * [IN, OUT, BOTH]
                  */
                 'FROM' => 'BOTH'
             ],
         ];
 
         /*
-         * Keys of Ajax, View/Controller
-         * Private Keys (P = Primary, S = Secondary)
+         * Private Keys of 
+         * Ajax & View Controllers
+         * [P = Primary, S = Secondary]
          */
         $this->KEYS = [
             'CONTROLLER' => [
@@ -134,8 +140,9 @@ class configure {
         $this->OPT = [
 
             /*
-             * App Protocol (http:// or https://)
-             * Auto Configure, If Empty **
+             * App Protocol
+             * [http:// or https://]
+             * Auto Configure, If Empty
              */
             'PROTOCOL' => '',
             /*
@@ -144,6 +151,9 @@ class configure {
             'MEMORY_LIMIT' => '16M',
         ];
 
+        /*
+         * Extra Global Array or Value
+         */
         $this->EXTRA = [];
     }
 
@@ -186,7 +196,8 @@ class configure {
     }
 
     /*
-     * Get Maintain Mode (Return Bool)
+     * Get Maintain Mode
+     * [Return Bool]
      */
 
     public function MAINTAIN() {
@@ -194,7 +205,8 @@ class configure {
     }
 
     /*
-     * Checking Plugin Exists & Plugin Active
+     * Checking Plugin Exists 
+     * Plugin Active
      */
 
     public function PLUGIN_ACTIVE($name) {
@@ -211,7 +223,7 @@ class configure {
      * Do not call this Method **
      */
 
-    public function SETS() {
+    protected function SETS() {
 
         switch ($this->APP['ENVT']) {
 

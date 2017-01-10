@@ -6,7 +6,7 @@ if (!defined('ROOT')) {
 $this->CALL_FUNCS('BEFORE_HEAD');
 
 /*
- * Default Header
+ * Default Header File
  */
 
 echo $this->TAGS['DOCTYPE'] . PHP_EOL;

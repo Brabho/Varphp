@@ -9,7 +9,7 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Main Render Class
+ * Render Class
  */
 
 class render extends urls {
@@ -48,7 +48,7 @@ class render extends urls {
     }
 
     /*
-     * Set Meta Data
+     * Set Meta Datas
      */
 
     public function META_SET($arr = []) {
@@ -121,7 +121,7 @@ class render extends urls {
         }
 
         /*
-         * Final Rendering
+         * Finally Rendering
          */
 
         if (file_exists($this->HEADER)) {

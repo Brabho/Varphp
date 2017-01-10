@@ -9,7 +9,8 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Hook Class (Middle/Joint/Marge)
+ * Hooks Class 
+ * [Middle/Joint/Marge]
  */
 
 class hooks extends render {

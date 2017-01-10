@@ -4,7 +4,7 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Default Footer
+ * Default Footer File
  */
 
 $this->CALL_FUNCS('IN_FOOTER');

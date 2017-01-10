@@ -42,7 +42,7 @@ class conf extends get_conf {
 
     /*
      * Real File
-     * Actual File Name
+     * [Actual File Name]
      */
 
     public function get_file($path, $type = 'CONTROLLER') {
@@ -60,7 +60,7 @@ class conf extends get_conf {
 
     /*
      * File Name
-     * Alice Name
+     * [Alice Name]
      */
 
     public function get_name($path, $type = 'CONTROLLER') {

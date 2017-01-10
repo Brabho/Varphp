@@ -4,15 +4,15 @@
 ### Develop By [Club Coding] (http://clubcoding.com/)
 
 ### Description
-PHP micro MVC Pattern. (Model View Controller)
+PHP nano MVC Pattern. (Model View Controller)
 
-No Library or Class/Functions Added. 
+No Library or Class/Functions Added.
 Use [HelperClass] (https://github.com/krishnaTORQUE/HelperClass) Instead.
 
 Fast, LightWeight & Powerful
 
 ### Tested
-PHP     (5.5, 5.6)
+PHP     (5.5, 5.6, 7.0)
 
 Apache  (2.2, 2.4)
 
@@ -20,7 +20,7 @@ Apache  (2.2, 2.4)
 Rewrite Module On
 
 ### Version 
-Stable Version 2.7
+Stable Version 2.8
 
 ### License
 (C) 2013 - 2016 

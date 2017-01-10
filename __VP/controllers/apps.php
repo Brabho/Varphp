@@ -9,7 +9,9 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Getting Apps Sub Controllers
+ * Getting Apps
+ * Sub Controllers
+ * Apps Methods
  */
 
 class apps extends urls {
@@ -55,7 +57,8 @@ class apps extends urls {
             }
 
             /*
-             * Getting Controller (File and Class)
+             * Getting Controller
+             * [File and Class]
              */
 
             $ctrl_file = $this->get_file($path . $class) . '.php';
@@ -120,7 +123,8 @@ class apps extends urls {
     private function ajax_ctrl() {
 
         /*
-         * Auth: Request Method
+         * Auth
+         * Request Method
          */
 
         $req = null;
@@ -146,7 +150,8 @@ class apps extends urls {
         }
 
         /*
-         * Auth: Request From
+         * Auth
+         * Request From
          */
 
         $from = null;
@@ -172,7 +177,8 @@ class apps extends urls {
         }
 
         /*
-         * Auth: Requested Type
+         * Auth
+         * Requested Type
          */
 
         $path = null;
@@ -185,8 +191,8 @@ class apps extends urls {
         }
 
         /*
-         * Calling File
-         * Class, Method (if exists)
+         * Calling File & Class
+         * Method [if exists]
          */
 
         if (isset($path) && file_exists($path . '.php')) {

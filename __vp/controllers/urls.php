@@ -21,7 +21,7 @@ class urls extends conf {
     }
 
     /*
-     * Get Safe Filtered Parse Url Array
+     * Filtered Parse URL/URI Array
      */
 
     public function URL($name = '') {
@@ -58,7 +58,7 @@ class urls extends conf {
     }
 
     /*
-     * Checking Ajax Request 
+     * Checking Ajax Request
      */
 
     public function AJAX() {
@@ -105,7 +105,8 @@ class urls extends conf {
     }
 
     /*
-     * Home Page (Return Bool)
+     * Home Page
+     * [Return Bool]
      */
 
     public function HOME() {

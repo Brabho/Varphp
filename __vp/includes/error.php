@@ -3,6 +3,10 @@ if (!defined('ROOT')) {
     require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
+/*
+ * Default Error File
+ */
+
 while (ob_get_contents()) {
     ob_end_clean();
 }

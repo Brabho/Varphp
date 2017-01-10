@@ -9,7 +9,7 @@ if (!defined('ROOT')) {
 }
 
 /*
- * Get User Define Configure and Marge
+ * Getting User Define Configure and Marge
  */
 
 if (file_exists(ROOT . '_config.php')) {

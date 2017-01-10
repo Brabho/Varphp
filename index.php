@@ -1,5 +1,4 @@
 <?php
-
 /*
     __     __               _           
     \ \   / __ _ _ __ _ __ | |__  _ __  
@@ -8,10 +7,9 @@
        \_/ \__,_|_|  | .__/|_| |_| .__/ 
                      |_|         |_|    
 
-            Version: 2.7
+            Version: 2.8
        Develop By Club Coding
 */
-
 define('ROOT', str_ireplace('\\', '/', dirname(__FILE__)) . '/');
 
 $SCRIPT_NAME = str_ireplace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
