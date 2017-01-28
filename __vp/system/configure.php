@@ -9,6 +9,7 @@ if (!defined('ROOT')) {
 /*
  * Main Configure Class File
  */
+
 class configure {
 
     public $DB;
@@ -58,6 +59,10 @@ class configure {
              * Active Plugins Directory Name
              */
             'ACTIVE_PLUGINS' => [],
+            /*
+             * Active Autoload File
+             */
+            'ACTIVE_AUTOLOAD' => [],
             /*
              * App Mode
              * [run, maintain]
@@ -159,6 +164,7 @@ class configure {
     /*
      * Default Paths
      */
+
     public function PATH($name = null, $sub = null) {
         $allDirs = [
             'VP' => '__VP/',
@@ -197,14 +203,28 @@ class configure {
      * Get Maintain Mode
      * [Return Bool]
      */
+
     public function MAINTAIN() {
         return ($this->APP['MODE'] === 'maintain' || file_exists('.maintain')) ? true : false;
     }
 
     /*
-     * Checking Plugin Exists 
-     * Plugin Active
+     * Checking Autoload Exists & Active
      */
+
+    public function AUTOLOAD_ACTIVE($name) {
+        if (in_array($name, $this->APP['ACTIVE_AUTOLOAD']) && file_exists(ROOT . $this->PATH('AUTOLOAD') . $name)) {
+            return $this->PATH('AUTOLOAD') . $name;
+        } else {
+            return false;
+        }
+        unset($name);
+    }
+
+    /*
+     * Checking Plugin Exists & Active
+     */
+
     public function PLUGIN_ACTIVE($name) {
         if (in_array($name, $this->APP['ACTIVE_PLUGINS']) && is_dir(ROOT . $this->PATH('PLUGINS'))) {
             return $this->PATH('PLUGINS') . $name . '/';
@@ -216,8 +236,9 @@ class configure {
 
     /*
      * Set Configuration
-     * Do not call this Method **
+     * Do not call this Method *
      */
+
     protected function SETS() {
 
         switch ($this->APP['ENVT']) {

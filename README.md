@@ -16,14 +16,16 @@ PHP     (5.5, 5.6, 7.0)
 
 Apache  (2.2, 2.4)
 
-### Require
-Rewrite Module On
+### Note
+    UTF-8 Charset Only
 
-### Version 
-Stable Version 2.8
+    Enable Rewrite Module On
+
+### Version
+Stable Version 2.9
 
 ### License
-(C) 2013 - 2016 
+(C) 2013 - 2017
 under GNU General Public License Version 2.
 
 ### Example

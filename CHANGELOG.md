@@ -1,5 +1,12 @@
 # Change Log & History
 
+#### 28-01-2017
+    Stable Version 2.9
+
+    Improved:
+        Autoload
+        configure.php
+
 #### 10-01-2017
     Stable Version 2.8
     Review All Files
@@ -7,8 +14,6 @@
     Removed:
         Session Start
         ob_start();
-
-    UTF-8 is Default
 
 #### 30-12-2016
     Stable Version 2.7

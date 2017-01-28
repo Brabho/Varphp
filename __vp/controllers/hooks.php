@@ -33,7 +33,10 @@ class hooks extends render {
                 if ($autoload === '.' || $autoload === '..') {
                     continue;
                 }
-                require_once $autoload_path . $autoload;
+                $autoload_file = $autoload_path . $autoload;
+                if ($this->AUTOLOAD_ACTIVE($autoload) && file_exists($autoload_file)) {
+                    require_once $autoload_file;
+                }
             }
         }
         unset($autoload_path, $autoload_list, $autoload);
