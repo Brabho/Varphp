@@ -12,20 +12,17 @@ class home extends VP\Controller\hooks {
 
     public function index() {
 
-        require_once ROOT . $this->PATH('ACTIVE_APP') . 'includes/include_all.php';
-
-        require_once ROOT . $this->PATH('ACTIVE_APP') . 'view/home.php';
-
         /*
          * If Direct Call to Home Controller
          */
 
-        if ($this->URL('PATHS')[0] === 'home') {
-            $this->ERROR = true;
-            $this->RENDER(ROOT . $this->PATH('ACTIVE_APP') . 'view/error.php');
-        } else {
-            $this->RENDER();
+        if (strtolower($this->URL('PATHS')[0]) === 'home') {
+            $this->ERROR = 'e404';
         }
+
+        require_once ROOT . $this->PATH('ACTIVE_APP') . 'includes/include_all.php';
+        require_once ROOT . $this->PATH('ACTIVE_APP') . 'view/home.php';
+        $this->RENDER();
     }
 
 }

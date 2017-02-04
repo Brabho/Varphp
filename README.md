@@ -22,7 +22,7 @@ Apache  (2.2, 2.4)
     Enable Rewrite Module On
 
 ### Version
-Stable Version 2.9
+Stable Version 2.10
 
 ### License
 (C) 2013 - 2017

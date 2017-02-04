@@ -64,6 +64,7 @@ class apps extends urls {
             $ctrl_file = $this->get_file($path . $class) . '.php';
             if (file_exists($ctrl_file)) {
                 require_once $ctrl_file;
+                $class = str_replace('-', '_', $class);
                 if (class_exists($class)) {
                     $param = $this->URL('PATHS');
                     array_shift($param);
@@ -93,10 +94,14 @@ class apps extends urls {
 
             if (isset($call)) {
                 if (array_key_exists(1, $this->URL('PATHS'))) {
-                    if (method_exists($class, $this->URL('PATHS')[1])) {
+                    $method = str_replace('-', '_', $this->URL('PATHS')[1]);
+                    if (method_exists($class, $method)) {
                         array_shift($param);
-                        $method = $this->URL('PATHS')[1];
                         $call->$method($param);
+
+                        /*
+                         * Dynamic Method 
+                         */
                     } elseif (method_exists($class, 'dynamic')) {
                         $call->dynamic($param);
                     } else {

@@ -23,16 +23,16 @@ class conf extends get_conf {
             ob_end_clean();
         }
         $path = ROOT . $this->PATH('ACTIVE_APP');
-        if (file_exists($path . 'error.php')) {
-            require_once $path . 'error.php';
+        if (file_exists($path . 'err.php')) {
+            require_once $path . 'err.php';
 
-            if (class_exists('error')) {
-                $class = new \error($arg);
+            if (class_exists('err')) {
+                $class = new \err($arg);
             } else {
                 require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
             }
 
-            if (method_exists('error', $arg)) {
+            if (method_exists('err', $arg)) {
                 $class->$arg();
             }
         } else {
@@ -44,6 +44,7 @@ class conf extends get_conf {
      * Real File
      * [Actual File Name]
      */
+
     public function get_file($path, $type = 'CONTROLLER') {
         $call_file = basename($path);
 
@@ -61,6 +62,7 @@ class conf extends get_conf {
      * File Name
      * [Alice Name]
      */
+
     public function get_name($path, $type = 'CONTROLLER') {
         $call_file = basename($path);
 
@@ -74,6 +76,10 @@ class conf extends get_conf {
         return ($path === $call_file) ? $the_file : dirname($path) . '/' . $the_file;
 
         unset($path, $type, $call_file, $the_keys);
+    }
+
+    function __destruct() {
+        unset($this);
     }
 
 }

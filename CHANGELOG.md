@@ -1,5 +1,14 @@
 # Change Log & History
 
+#### 04-02-2017
+    Stable Version 2.10
+
+    Improved:
+        App Controller
+        App Method
+        Error Controller
+        boot.php
+
 #### 28-01-2017
     Stable Version 2.9
 

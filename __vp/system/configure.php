@@ -26,7 +26,6 @@ class configure {
          * Default or Main Database Login Details
          */
         $this->DB = [
-
             /*
              * Multi DataBase Login Details With Different Array Key
              */
@@ -42,7 +41,6 @@ class configure {
          * App Details
          */
         $this->APP = [
-
             /*
              * App Name
              */
@@ -78,7 +76,6 @@ class configure {
              * Ajax Request Type
              */
             'AJAX' => [
-
                 /*
                  * Request Method 
                  * [GET, POST, BOTH]
@@ -142,7 +139,6 @@ class configure {
          * Other Options
          */
         $this->OPT = [
-
             /*
              * App Protocol
              * [http:// or https://]

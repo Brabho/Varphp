@@ -1,10 +1,13 @@
 <?php
+
 /*
  * Main BootLoader/BootStrap
  */
 if (!defined('ROOT')) {
     require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
+
+ob_start();
 
 /*
  * Getting Configuration

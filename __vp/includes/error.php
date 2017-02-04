@@ -18,7 +18,9 @@ header('Status: 404 Not Found');
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>404 Error</title>
+        <title>Error</title>
+        <meta name="description" content="Page not found or Down for Maintain"/>
+
         <style type="text/css">
             body{
                 background: #fafafa;
