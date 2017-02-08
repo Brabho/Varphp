@@ -28,6 +28,10 @@ class err extends VP\Controller\hooks {
         $this->RENDER();
     }
 
+    function __destruct() {
+        unset($this);
+    }
+
 }
 
 ?>

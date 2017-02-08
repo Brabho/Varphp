@@ -1,5 +1,15 @@
 # Change Log & History
 
+#### 08-02-2017
+    Stable Version 2.11
+    Major Bugs Fixed
+
+    Improved:
+        Ajax Controller
+        Ajax Method
+        Performances
+        render.php
+
 #### 04-02-2017
     Stable Version 2.10
 

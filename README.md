@@ -22,11 +22,10 @@ Apache  (2.2, 2.4)
     Enable Rewrite Module On
 
 ### Version
-Stable Version 2.10
+Stable Version 2.11
 
 ### License
-(C) 2013 - 2017
-under GNU General Public License Version 2.
+(C) 2013 - 2017 under GNU General Public License Version 2.
 
 ### Example
 ```php

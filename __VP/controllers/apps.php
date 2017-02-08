@@ -205,6 +205,7 @@ class apps extends urls {
             require_once $path . '.php';
             $path = explode('/', $path);
             $class = $this->get_name($path[count($path) - 1], 'ajax');
+            $class = str_replace('-', '_', $class);
 
             if (class_exists($class)) {
                 $call = new $class();
@@ -212,10 +213,13 @@ class apps extends urls {
 
             if (isset($call, $_SERVER['QUERY_STRING'], $this->URL('QUERIES')[$this->KEYS['AJAX']['QUERY']])) {
                 $method = $this->URL('QUERIES')[$this->KEYS['AJAX']['QUERY']];
+                $method = str_replace('-', '_', $method);
                 if (method_exists($class, $method)) {
                     $call->$method();
                 }
             }
+
+            unset($req, $from, $pattern, $subject, $path, $class, $method);
         } else {
             $this->ERROR('e404');
         }

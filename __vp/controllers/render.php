@@ -135,7 +135,20 @@ class render extends urls {
             require_once $this->FOOTER;
         }
 
-        unset($output_buffer, $err);
+        /*
+         * Cleaning all Variables
+         */
+
+        foreach (array_keys(get_defined_vars()) as $var) {
+            if ($var === 'GLOBALS' || $var === '_POST' || $var === '_GET' || $var === '_COOKIE' ||
+                    $var === '_FILES' || $var === '_REQUEST' || $var === '_SERVER' || $var === '_ENV') {
+
+                continue;
+            }
+            $var = null;
+            unset($var);
+        }
+        clearstatcache();
     }
 
     function __destruct() {
