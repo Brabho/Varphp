@@ -10,8 +10,9 @@ if (!defined('ROOT')) {
 
 /*
  * Getting Apps
- * Sub Controllers
  * Apps Methods
+ * Sub Controllers
+ * Ajax Controller
  */
 
 class apps extends urls {
@@ -19,10 +20,14 @@ class apps extends urls {
     function __construct() {
         parent::__construct();
 
-        if ($this->AJAX()) {
-            $this->ajax_ctrl();
+        if ($this->MAINTAIN()) {
+            $this->ERROR('maintain');
         } else {
-            $this->view_ctrl();
+            if ($this->AJAX()) {
+                $this->ajax_ctrl();
+            } else {
+                $this->view_ctrl();
+            }
         }
     }
 

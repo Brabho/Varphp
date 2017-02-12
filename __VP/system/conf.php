@@ -4,6 +4,10 @@ namespace VP\System;
 
 use VP\System\get_conf;
 
+if (!defined('ROOT')) {
+    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+}
+
 class conf extends get_conf {
     /*
      * Setup Configuration
@@ -22,6 +26,7 @@ class conf extends get_conf {
         while (ob_get_contents()) {
             ob_end_clean();
         }
+
         $path = ROOT . $this->PATH('ACTIVE_APP');
         if (file_exists($path . 'err.php')) {
             require_once $path . 'err.php';
@@ -32,8 +37,10 @@ class conf extends get_conf {
                 require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
             }
 
-            if (method_exists('err', $arg)) {
+            if (isset($class) && method_exists('err', $arg)) {
                 $class->$arg();
+            } else {
+                require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
             }
         } else {
             require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];

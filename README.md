@@ -17,12 +17,12 @@ PHP     (5.5, 5.6, 7.0)
 Apache  (2.2, 2.4)
 
 ### Note
-    UTF-8 Charset Only
+UTF-8 Charset Only
 
-    Enable Rewrite Module On
+Enable Rewrite Module On
 
 ### Version
-Stable Version 2.11
+Stable Version 2.12
 
 ### License
 (C) 2013 - 2017 under GNU General Public License Version 2.

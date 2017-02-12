@@ -1,5 +1,17 @@
 # Change Log & History
 
+#### 12-02-2017
+    Stable Version 2.12
+    Review All Files
+
+    Improved:
+        Security
+        Maintain Mode
+        Error Controller
+
+    Bugs Fixed:
+        conf.php
+
 #### 08-02-2017
     Stable Version 2.11
     Major Bugs Fixed

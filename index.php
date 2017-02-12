@@ -7,7 +7,7 @@
        \_/ \__,_|_|  | .__/|_| |_| .__/ 
                      |_|         |_|    
 
-           Version: 2.11
+           Version: 2.12
        Develop By Club Coding
 */
 define('ROOT', str_ireplace('\\', '/', dirname(__FILE__)) . '/');
