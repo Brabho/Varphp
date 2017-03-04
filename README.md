@@ -1,4 +1,4 @@
-![Alt text](_apps/default/ico1.png?raw=true "Varphp")
+![Varphp](_default/ico1.png?raw=true "Varphp")
 # Varphp
 
 ### Description
