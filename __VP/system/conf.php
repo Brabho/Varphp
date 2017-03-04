@@ -4,8 +4,8 @@ namespace VP\System;
 
 use VP\System\get_conf;
 
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+if (!defined('MAIN')) {
+    require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 class conf extends get_conf {
@@ -29,21 +29,21 @@ class conf extends get_conf {
 
         $path = ROOT . $this->PATH('ACTIVE_APP');
         if (file_exists($path . 'err.php')) {
-            require_once $path . 'err.php';
+            require $path . 'err.php';
 
             if (class_exists('err')) {
                 $class = new \err($arg);
             } else {
-                require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+                require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
             }
 
             if (isset($class) && method_exists('err', $arg)) {
                 $class->$arg();
             } else {
-                require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+                require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
             }
         } else {
-            require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+            require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
         }
     }
 
@@ -81,7 +81,6 @@ class conf extends get_conf {
 
         $the_file = str_replace($the_keys, '', $call_file);
         return ($path === $call_file) ? $the_file : dirname($path) . '/' . $the_file;
-
         unset($path, $type, $call_file, $the_keys);
     }
 

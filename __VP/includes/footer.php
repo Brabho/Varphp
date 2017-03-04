@@ -1,6 +1,6 @@
 <?php
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+if (!defined('MAIN')) {
+    require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 /*
  * Default Footer File

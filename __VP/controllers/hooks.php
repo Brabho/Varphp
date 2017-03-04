@@ -4,8 +4,8 @@ namespace VP\Controller;
 
 use VP\Controller\render;
 
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+if (!defined('MAIN')) {
+    require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 /*
@@ -17,7 +17,7 @@ class hooks extends render {
 
     function __construct() {
         parent::__construct();
-        $this->gettingAutoload();
+        $this->gettingAutoloads();
         $this->gettingPlugins();
     }
 
@@ -25,8 +25,8 @@ class hooks extends render {
      * Getting Autoloads
      */
 
-    private function gettingAutoload() {
-        $autoload_path = ROOT . $this->PATH('AUTOLOAD');
+    private function gettingAutoloads() {
+        $autoload_path = ROOT . $this->PATH('AUTOLOADS');
         if (file_exists($autoload_path)) {
             $autoload_list = scandir($autoload_path);
             foreach ($autoload_list as $autoload) {

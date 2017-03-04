@@ -4,8 +4,8 @@ namespace VP\System;
 
 use VP\System\Configure;
 
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+if (!defined('MAIN')) {
+    require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 /*
@@ -13,7 +13,7 @@ if (!defined('ROOT')) {
  */
 
 if (file_exists(ROOT . '_config.php')) {
-    require_once ROOT . '_config.php';
+    require ROOT . '_config.php';
 }
 
 if (class_exists('_config')) {

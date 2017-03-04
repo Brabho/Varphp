@@ -4,7 +4,6 @@
     Allow from none
 </Files>
 
-AddDefaultCharset UTF-8
 Options -Indexes
 
 <IfModule mod_rewrite.c>
@@ -17,4 +16,4 @@ Options -Indexes
 SetEnv ERROR_PATH "__VP/includes/error.php"
 
 ## Set Root Path
-SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v2.12/"
+SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v3.0/"

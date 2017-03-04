@@ -1,14 +1,18 @@
 <?php
 /*
-    __     __               _           
-    \ \   / __ _ _ __ _ __ | |__  _ __  
-     \ \ / / _` | '__| '_ \| '_ \| '_ \ 
+    __     __               _
+    \ \   / __ _ _ __ _ __ | |__  _ __
+     \ \ / / _` | '__| '_ \| '_ \| '_ \
       \ V | (_| | |  | |_) | | | | |_) |
-       \_/ \__,_|_|  | .__/|_| |_| .__/ 
-                     |_|         |_|    
+       \_/ \__,_|_|  | .__/|_| |_| .__/
+                     |_|         |_|
+            __  ____     ______
+           |  \/  \ \   / / ___|
+           | |\/| |\ \ / | |
+           | |  | | \ V /| |
+           |_|  |_|  \_/  \____|
 
-           Version: 2.12
-       Develop By Club Coding
+            Version: 3.0
 */
 define('ROOT', str_ireplace('\\', '/', dirname(__FILE__)) . '/');
 
@@ -21,5 +25,5 @@ if (strlen($SCRIPT_NAME) > 1) {
 }
 unset($SCRIPT_NAME);
 
-require_once '__VP/system/boot.php';
+require ROOT . '__VP/system/boot.php';
 ?>

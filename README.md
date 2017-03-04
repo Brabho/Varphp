@@ -1,10 +1,10 @@
-![Alt text](_apps/default/icon1.png?raw=true "Varphp")
+![Alt text](_apps/default/ico1.png?raw=true "Varphp")
 # Varphp
-
-### Develop By [Club Coding] (http://clubcoding.com/)
 
 ### Description
 PHP nano MVC Pattern. (Model View Controller)
+
+Only MVC nothing else. Its not a framework.
 
 No Library or Class/Functions Added.
 Use [HelperClass] (https://github.com/krishnaTORQUE/HelperClass) Instead.
@@ -17,31 +17,30 @@ PHP     (5.5, 5.6, 7.0)
 Apache  (2.2, 2.4)
 
 ### Note
-UTF-8 Charset Only
-
 Enable Rewrite Module On
 
 ### Version
-Stable Version 2.12
+Stable Version 3.0
 
 ### License
 (C) 2013 - 2017 under GNU General Public License Version 2.
 
 ### Example
 ```php
-# Set Configure #
+## Set Configuration #
 # Create `_config.php` file in root directory.
 
 class _config extends VP\System\configure {
     function __construct() {
         parent::__construct();
         $this->APP['NAME'] = 'My App';
+        $this->APP['ACTIVE'] = 'myapp';
     }
 }
 
-# Using Plugins #
-# Create `_plugins` folder in root directory and paste your plugin(s).
+## Using Plugins #
+# Create `__PLUGINS` folder in root directory and paste your plugin(s).
 
-# Using Autoloader #
-# Create `_autoload` folder in root directory and paste your class file.
+## Using Autoloaders #
+# Create `__AUTOLOADS` folder in root directory and paste your class file.
 ```

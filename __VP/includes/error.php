@@ -1,10 +1,6 @@
 <?php
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
-}
-
 /*
- * Default Error File
+ * Default Error Page
  */
 
 while (ob_get_contents()) {
@@ -20,7 +16,6 @@ header('Status: 404 Not Found');
         <meta charset="utf-8"/>
         <title>Error</title>
         <meta name="description" content="Page not found or Down for Maintain"/>
-
         <style type="text/css">
             body{
                 background: #fafafa;
@@ -28,7 +23,7 @@ header('Status: 404 Not Found');
             }
             .main{
                 background: #fdfdfd;
-                border: 2px dashed #aaa;
+                border: 5px dashed #aaa;
                 width: 40%;
                 border-radius: 5px;
                 margin: 10% auto;

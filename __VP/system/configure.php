@@ -2,8 +2,8 @@
 
 namespace VP\System;
 
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+if (!defined('MAIN')) {
+    require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 /*
@@ -12,7 +12,6 @@ if (!defined('ROOT')) {
 
 class configure {
 
-    public $DB;
     public $APP;
     public $KEYS;
     public $TAGS;
@@ -23,21 +22,6 @@ class configure {
     function __construct() {
 
         /*
-         * Default or Main Database Login Details
-         */
-        $this->DB = [
-            /*
-             * Multi DataBase Login Details With Different Array Key
-             */
-            'MAIN' => [
-                'HOST' => '127.0.0.1',
-                'DB_NAME' => 'varphp_database',
-                'USER' => 'root',
-                'PASS' => ''
-            ]
-        ];
-
-        /*
          * App Details
          */
         $this->APP = [
@@ -45,6 +29,10 @@ class configure {
              * App Name
              */
             'NAME' => 'Varphp',
+            /*
+             * Charset
+             */
+            'CHARSET' => 'utf-8',
             /*
              * App Time Zone
              */
@@ -58,9 +46,9 @@ class configure {
              */
             'ACTIVE_PLUGINS' => [],
             /*
-             * Active Autoload File
+             * Active Autoload Files
              */
-            'ACTIVE_AUTOLOAD' => [],
+            'ACTIVE_AUTOLOADS' => [],
             /*
              * App Mode
              * [run, maintain]
@@ -91,7 +79,7 @@ class configure {
 
         /*
          * Private Keys of 
-         * Ajax & View Controllers
+         * View & Ajax Controllers
          * [P = Primary, S = Secondary]
          */
         $this->KEYS = [
@@ -149,6 +137,10 @@ class configure {
              * Set Memory Limit
              */
             'MEMORY_LIMIT' => '16M',
+            /*
+             * Cookie HTTP Only
+             */
+            'COOKIE_HTTP' => true,
         ];
 
         /*
@@ -165,25 +157,24 @@ class configure {
         $allDirs = [
             'VP' => '__VP/',
             'SYS' => '__VP/system/',
-            'APPS' => '_apps/',
-            'ACTIVE_APP' => '_apps/' . $this->APP['ACTIVE'] . '/',
-            'PLUGINS' => '_plugins/',
-            'AUTOLOAD' => '_autoload/',
-            'TMP' => '_temp/',
+            'PLUGINS' => '__PLUGINS/',
+            'AUTOLOADS' => '__AUTOLOADS/',
+            'TMP' => '__TMP/',
+            'ACTIVE_APP' => '_' . $this->APP['ACTIVE'] . '/',
         ];
 
         $path = false;
         if (array_key_exists($name, $allDirs)) {
 
             if ($name === 'TMP' && !is_dir($allDirs['TMP'])) {
-                mkdir($allDirs['TMP'], 0777, TRUE);
+                mkdir(ROOT . $allDirs['TMP'], 0777, TRUE);
             }
 
             if (strlen($sub) > 0) {
                 $path = $allDirs[$name] . $sub . '/';
 
                 if ($name === 'TMP' && !is_dir($path)) {
-                    mkdir($allDirs['TMP'] . $sub, 0777, TRUE);
+                    mkdir(ROOT . $allDirs['TMP'] . $sub, 0777, TRUE);
                 } elseif (!is_dir($path)) {
                     $path = false;
                 }
@@ -201,7 +192,7 @@ class configure {
      */
 
     public function MAINTAIN() {
-        return ($this->APP['MODE'] === 'maintain' || file_exists('.maintain')) ? true : false;
+        return ($this->APP['MODE'] === 'maintain' || file_exists(ROOT . '.maintain')) ? true : false;
     }
 
     /*
@@ -209,11 +200,10 @@ class configure {
      */
 
     public function AUTOLOAD_ACTIVE($name) {
-        if (in_array($name, $this->APP['ACTIVE_AUTOLOAD']) && file_exists(ROOT . $this->PATH('AUTOLOAD') . $name)) {
-            return $this->PATH('AUTOLOAD') . $name;
-        } else {
-            return false;
+        if (in_array($name, $this->APP['ACTIVE_AUTOLOADS']) && file_exists(ROOT . $this->PATH('AUTOLOADS') . $name)) {
+            return $this->PATH('AUTOLOADS') . $name;
         }
+        return false;
         unset($name);
     }
 
@@ -224,14 +214,25 @@ class configure {
     public function PLUGIN_ACTIVE($name) {
         if (in_array($name, $this->APP['ACTIVE_PLUGINS']) && is_dir(ROOT . $this->PATH('PLUGINS'))) {
             return $this->PATH('PLUGINS') . $name . '/';
-        } else {
-            return false;
         }
+        return false;
         unset($name);
     }
 
     /*
-     * Set Configuration
+     * System Details
+     */
+
+    public function VARPHP($n) {
+        $details = [
+            'VERSION' => '3.0',
+            'STATUS' => 'Stable'
+        ];
+        return (array_key_exists($n, $details)) ? $details[$n] : false;
+    }
+
+    /*
+     * Setting up Configuration
      * Do not call this Method *
      */
 
@@ -268,9 +269,13 @@ class configure {
         if ($this->OPT['PROTOCOL'] === 'https://') {
             ini_set('session.cookie_secure', 1);
         }
+
         ini_set('memory_limit', $this->OPT['MEMORY_LIMIT']);
-        ini_set('session.cookie_httponly', 1);
-        ini_set('session.use_only_cookies', 1);
+
+        if ($this->OPT['COOKIE_HTTP'] === true) {
+            ini_set('session.cookie_httponly', 1);
+            ini_set('session.use_only_cookies', 1);
+        }
     }
 
     function __destruct() {

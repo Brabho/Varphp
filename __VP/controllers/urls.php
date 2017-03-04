@@ -4,8 +4,8 @@ namespace VP\Controller;
 
 use VP\System\conf;
 
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+if (!defined('MAIN')) {
+    require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 /*
@@ -28,7 +28,7 @@ class urls extends conf {
 
         $full = $this->OPT['PROTOCOL'] . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $full = trim($full, " \/\t\n\r");
-        $full = htmlspecialchars($full, ENT_QUOTES, 'UTF-8');
+        $full = htmlspecialchars($full, ENT_QUOTES, $this->APP['CHARSET']);
 
         $fpath = parse_url($full, PHP_URL_PATH);
         $fpath = substr($fpath, strlen(PATH));
@@ -116,9 +116,8 @@ class urls extends conf {
             return true;
         } elseif (strlen($this->URL('PATHS')[0]) < 1) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     function __destruct() {

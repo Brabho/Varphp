@@ -4,12 +4,13 @@ namespace VP\Controller;
 
 use VP\Controller\urls;
 
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+if (!defined('MAIN')) {
+    require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 /*
  * Getting Apps
+ * Maintain Mode
  * Apps Methods
  * Sub Controllers
  * Ajax Controller
@@ -44,7 +45,7 @@ class apps extends urls {
 
         $mainController = $this->get_file($path . 'maincontroller') . '.php';
         if (file_exists($mainController)) {
-            require_once $mainController;
+            require $mainController;
             if (class_exists('mainController')) {
                 new \mainController();
             }
@@ -63,12 +64,12 @@ class apps extends urls {
 
             /*
              * Getting Controller
-             * [File and Class]
+             * [File and Class / Controller]
              */
 
             $ctrl_file = $this->get_file($path . $class) . '.php';
             if (file_exists($ctrl_file)) {
-                require_once $ctrl_file;
+                require $ctrl_file;
                 $class = str_replace('-', '_', $class);
                 if (class_exists($class)) {
                     $param = $this->URL('PATHS');
@@ -83,7 +84,7 @@ class apps extends urls {
                  */
             } elseif (file_exists($this->get_file($path . 'dynamic') . '.php')) {
                 $ctrl_file = $this->get_file($path . 'dynamic') . '.php';
-                require_once $ctrl_file;
+                require $ctrl_file;
                 if (class_exists('dynamic')) {
                     new \dynamic($this->URL('PATHS'));
                 } else {
@@ -207,7 +208,7 @@ class apps extends urls {
 
         if (isset($path) && file_exists($path . '.php')) {
 
-            require_once $path . '.php';
+            require ROOT . $path . '.php';
             $path = explode('/', $path);
             $class = $this->get_name($path[count($path) - 1], 'ajax');
             $class = str_replace('-', '_', $class);

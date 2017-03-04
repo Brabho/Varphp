@@ -1,5 +1,34 @@
 # Change Log & History
 
+#### 04-03-2017
+    Stable Version 3.0
+
+    Improved:
+        Security
+        Performances
+        Speed
+        Temp Directory
+
+        configure.php
+        render.php
+
+    Added:
+        Details
+        Charset
+
+    Changed:
+        `AUTOLOAD`            > `AUTOLOADS`
+
+        [DIR]
+        `_autoload`           > `__AUTOLOADS`
+        `_plugins`            > `__PLUGINS`
+        `_temp`               > `__TMP`
+
+    Removed:
+        URL attribute from header
+        Apps Parent Directory
+        Error Shortcut Controller
+
 #### 12-02-2017
     Stable Version 2.12
     Review All Files

@@ -4,8 +4,8 @@ namespace VP\Controller;
 
 use VP\Controller\urls;
 
-if (!defined('ROOT')) {
-    require_once $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
+if (!defined('MAIN')) {
+    require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 /*
@@ -17,7 +17,6 @@ class render extends urls {
 
     public $HEADER;
     public $FOOTER;
-    public $ERROR;
     public $ADD_FUNC;
     public $META_DETAILS;
 
@@ -26,7 +25,6 @@ class render extends urls {
 
         $this->HEADER = ROOT . $this->PATH('VP', 'includes') . 'header.php';
         $this->FOOTER = ROOT . $this->PATH('VP', 'includes') . 'footer.php';
-        $this->ERROR = false;
 
         $this->ADD_FUNC = [
             'BEFORE_HEAD' => [],
@@ -82,43 +80,15 @@ class render extends urls {
     }
 
     /*
-     * Final Render View or Error
+     * Final Render
      */
 
-    protected function RENDER($err = null) {
+    protected function RENDER() {
 
-        /*
-         * Checking Before Render
-         * 
-         * If Error
-         */
-
-        if ($this->ERROR) {
-
-            while (ob_get_contents()) {
-                ob_end_clean();
-            }
-
-            if (isset($err)) {
-                require_once $err;
-            } else {
-                $this->ERROR($this->ERROR);
-            }
-
-            $output_buffer = ob_get_contents();
-            while (ob_get_contents()) {
-                ob_end_clean();
-            }
-        } else {
-
-            /*
-             * If No Error
-             */
-
-            $output_buffer = ob_get_contents();
-            while (ob_get_contents()) {
-                ob_end_clean();
-            }
+        $output_buffer = '';
+        while (ob_get_contents()) {
+            $output_buffer .= ob_get_contents();
+            ob_end_clean();
         }
 
         /*
@@ -126,13 +96,13 @@ class render extends urls {
          */
 
         if (file_exists($this->HEADER)) {
-            require_once $this->HEADER;
+            require $this->HEADER;
         }
 
         echo $output_buffer;
 
         if (file_exists($this->FOOTER)) {
-            require_once $this->FOOTER;
+            require $this->FOOTER;
         }
 
         /*
@@ -146,7 +116,7 @@ class render extends urls {
                 continue;
             }
             $var = null;
-            unset($var);
+            unset($var, $output_buffer);
         }
         clearstatcache();
     }
