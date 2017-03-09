@@ -22,11 +22,15 @@ class urls extends conf {
 
     /*
      * Filtered Parse URL/URI Array
+     * Ignore Case 
      */
 
-    public function URL($name = '') {
+    public function URL($name = '', $ignore = true) {
 
         $full = $this->OPT['PROTOCOL'] . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        if ($ignore === true) {
+            $full = strtolower($full);
+        }
         $full = trim($full, " \/\t\n\r");
         $full = htmlspecialchars($full, ENT_QUOTES, $this->APP['CHARSET']);
 
@@ -53,7 +57,7 @@ class urls extends conf {
             'QUERIES' => $QUERIES,
         ];
 
-        unset($full, $fpath, $query, $qstre, $QUERIES);
+        unset($ignore, $full, $fpath, $query, $qstre, $QUERIES, $i);
         return (array_key_exists($name, $urls)) ? $urls[$name] : false;
     }
 

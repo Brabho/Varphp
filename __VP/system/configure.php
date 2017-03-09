@@ -225,7 +225,7 @@ class configure {
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.0',
+            'VERSION' => '3.1',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;

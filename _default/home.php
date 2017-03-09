@@ -16,7 +16,7 @@ class home extends VP\Controller\hooks {
          * If Direct Call to Home Controller
          */
 
-        if (strtolower($this->URL('PATHS')[0]) === 'home') {
+        if ($this->URL('PATHS')[0] === 'home') {
             /*
              * Error
              */
