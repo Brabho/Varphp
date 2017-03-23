@@ -6,8 +6,9 @@ PHP nano MVC Pattern. (Model View Controller)
 
 Only MVC nothing else. Its not a framework.
 
-No Library or Class/Functions Added.
-Use [HelperClass] (https://github.com/krishnaTORQUE/HelperClass) Instead.
+No Library or Class/Functions Added. Use HelperClass Instead.
+
+[HelperClass] (https://github.com/Brabho/HelperClass)
 
 Fast, LightWeight & Powerful
 
