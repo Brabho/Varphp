@@ -25,11 +25,18 @@ class urls extends conf {
      * Ignore Case 
      */
 
-    public function URL($name = '', $ignore = true) {
+    public function URL($name = '', $ignore = true, $dash = false) {
 
         $full = $this->OPT['PROTOCOL'] . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if ($ignore === true) {
             $full = strtolower($full);
+        }
+        if ($dash) {
+            if ($dash === 'dash') {
+                $full = preg_replace('@_@i', '-', $full);
+            } elseif ($dash === 'und') {
+                $full = preg_replace('@-@i', '_', $full);
+            }
         }
         $full = trim($full, " \/\t\n\r");
         $full = htmlspecialchars($full, ENT_QUOTES, $this->APP['CHARSET']);
@@ -67,39 +74,41 @@ class urls extends conf {
 
     public function AJAX() {
         $status = false;
+
+        $this->AJAX_DETAILS = [];
+        $this->AJAX_DETAILS['REQUEST_TO'] = $this->URL('FULL');
+
         $header = getallheaders();
-        if (isset($header['HTTP_X_REQUESTED_WITH']) && $header['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
-            $status = true;
 
-            $this->AJAX_DETAILS = [];
-            $this->AJAX_DETAILS['REQUESTED'] = 'HEADER';
-        } elseif (isset($header['X-Requested-With']) && $header['X-Requested-With'] === 'XMLHttpRequest') {
-            $status = true;
+        /*
+         * Requested By
+         */
 
-            $this->AJAX_DETAILS = [];
-            $this->AJAX_DETAILS['REQUESTED'] = 'HEADER';
-        } elseif ($this->URL('PATHS')[0] === 'ajax') {
-            $status = true;
+        if ($this->URL('PATHS')[0] === 'ajax') {
 
-            $this->AJAX_DETAILS = [];
+            $status = true;
             $this->AJAX_DETAILS['REQUESTED'] = 'URL';
+        } elseif (isset($header['HTTP_X_REQUESTED_WITH']) || isset($header['X-Requested-With'])) {
+
+            $status = true;
+            $this->AJAX_DETAILS['REQUESTED'] = 'HEADER';
         }
 
         /*
          * Request From
          */
 
-        if ($status === true && isset($this->AJAX_DETAILS, $_SERVER['HTTP_REFERER'])) {
+        if ($status === true && isset($header['Referer'])) {
 
             $this->AJAX_DETAILS['METHOD'] = $_SERVER['REQUEST_METHOD'];
             $this->AJAX_DETAILS['REFERER'] = $header['Referer'];
 
-            $pattern = '@' . $_SERVER['HTTP_REFERER'] . '@';
-            $subject = $this->URL('FULL');
+            $pattern = '@' . $this->URL('APP') . '@i';
+            $subject = $_SERVER['HTTP_REFERER'];
 
-            if (preg_match($pattern, $subject)) {
+            if (preg_match_all($pattern, $subject)) {
                 $this->AJAX_DETAILS['FROM'] = 'IN';
-            } elseif (!preg_match($pattern, $subject)) {
+            } else {
                 $this->AJAX_DETAILS['FROM'] = 'OUT';
             }
         }
@@ -122,10 +131,6 @@ class urls extends conf {
             return true;
         }
         return false;
-    }
-
-    function __destruct() {
-        unset($this);
     }
 
 }

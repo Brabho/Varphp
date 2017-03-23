@@ -64,10 +64,6 @@ class hooks extends render {
         unset($plugins_path, $plugins_list, $plugin, $plugin_contl);
     }
 
-    function __destruct() {
-        unset($this);
-    }
-
 }
 
 ?>

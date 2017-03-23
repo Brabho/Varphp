@@ -36,6 +36,7 @@ if (preg_match_all('/index\.php/', $_SERVER['PHP_SELF']) &&
 
     new VP\Controller\apps();
 } else {
+
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 ?>

@@ -34,10 +34,6 @@ class home extends VP\Controller\hooks {
         }
     }
 
-    function __destruct() {
-        unset($this);
-    }
-
 }
 
 ?>

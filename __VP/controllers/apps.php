@@ -56,6 +56,7 @@ class apps extends urls {
              */
 
             $error = false;
+
             if ($this->HOME()) {
                 $class = 'home';
             } elseif (array_key_exists(0, $this->URL('PATHS'))) {
@@ -66,14 +67,14 @@ class apps extends urls {
              * Getting Controller
              * [File and Class / Controller]
              */
+            $param = $this->URL('PATHS');
+            array_shift($param);
 
             $ctrl_file = $this->get_file($path . $class) . '.php';
             if (file_exists($ctrl_file)) {
                 require $ctrl_file;
                 $class = str_replace('-', '_', $class);
                 if (class_exists($class)) {
-                    $param = $this->URL('PATHS');
-                    array_shift($param);
                     $call = new $class($param);
                 } else {
                     $error = true;
@@ -86,7 +87,8 @@ class apps extends urls {
                 $ctrl_file = $this->get_file($path . 'dynamic') . '.php';
                 require $ctrl_file;
                 if (class_exists('dynamic')) {
-                    new \dynamic($this->URL('PATHS'));
+                    $call = new \dynamic($param);
+                    $class = 'dynamic';
                 } else {
                     $error = true;
                 }
@@ -97,7 +99,6 @@ class apps extends urls {
             /*
              * Calling Method
              */
-
             if (isset($call)) {
                 if (array_key_exists(1, $this->URL('PATHS'))) {
                     $method = str_replace('-', '_', $this->URL('PATHS')[1]);
@@ -110,6 +111,7 @@ class apps extends urls {
                          */
                     } elseif (method_exists($class, 'dynamic')) {
                         $call->dynamic($param);
+                        array_shift($param);
                     } else {
                         $error = true;
                     }
@@ -118,6 +120,13 @@ class apps extends urls {
                 } else {
                     $error = true;
                 }
+            }
+
+            /*
+             * Render error if path longer than giving
+             */
+            if (count($param) > $call->SUB_PATHS) {
+                $error = true;
             }
 
             if ($error) {
@@ -166,9 +175,6 @@ class apps extends urls {
          */
 
         $from = null;
-        $pattern = '@' . $_SERVER['HTTP_REFERER'] . '@';
-        $subject = $this->URL('FULL');
-
         switch ($this->APP['AJAX']['FROM']) {
 
             case 'IN':
@@ -194,10 +200,13 @@ class apps extends urls {
 
         $path = null;
         if (isset($req, $from)) {
-            if ($this->AJAX_DETAILS['REQUESTED'] === 'HEADER') {
-                $path = $this->get_file($this->URL('FPATH'), 'ajax');
-            } elseif ($this->AJAX_DETAILS['REQUESTED'] === 'URL') {
-                $path = $this->get_file(substr($this->URL('FPATH'), 5), 'ajax');
+
+            if ($this->AJAX_DETAILS['REQUESTED'] === 'URL') {
+
+                $path = $this->get_file(substr($this->URL('FPATH'), 5), 'AJAX');
+            } elseif ($this->AJAX_DETAILS['REQUESTED'] === 'HEADER') {
+
+                $path = $this->get_file($this->URL('FPATH'), 'AJAX');
             }
         }
 
@@ -210,7 +219,7 @@ class apps extends urls {
 
             require ROOT . $path . '.php';
             $path = explode('/', $path);
-            $class = $this->get_name($path[count($path) - 1], 'ajax');
+            $class = $this->get_name($path[count($path) - 1], 'AJAX');
             $class = str_replace('-', '_', $class);
 
             if (class_exists($class)) {
@@ -225,14 +234,10 @@ class apps extends urls {
                 }
             }
 
-            unset($req, $from, $pattern, $subject, $path, $class, $method);
+            unset($req, $from, $path, $class, $method);
         } else {
             $this->ERROR('e404');
         }
-    }
-
-    function __destruct() {
-        unset($this);
     }
 
 }

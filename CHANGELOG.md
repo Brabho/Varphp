@@ -1,5 +1,18 @@
 # Change Log & History
 
+#### 23-03-2017
+    Stable Version 3.3
+
+    Added:
+        Dynamic Method
+
+    Improved:
+        URI Routing
+        App Routing
+        AJAX Controller
+        app.php
+        render.php
+
 #### 09-03-2017
     Stable Version 3.1
 

@@ -102,7 +102,7 @@ class configure {
          */
         $this->TAGS = [
             'DOCTYPE' => '<!DOCTYPE html>',
-            'HTML' => '<html xmlns="http://www.w3.org/1999/xhtml" itemscope itemtype="http://schema.org/QAPage">',
+            'HTML' => '<html>',
             'HEAD' => '<head>',
             'BODY' => '<body>',
         ];
@@ -225,7 +225,7 @@ class configure {
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.1',
+            'VERSION' => '3.3',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;
@@ -276,10 +276,6 @@ class configure {
             ini_set('session.cookie_httponly', 1);
             ini_set('session.use_only_cookies', 1);
         }
-    }
-
-    function __destruct() {
-        unset($this);
     }
 
 }

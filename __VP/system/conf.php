@@ -57,7 +57,7 @@ class conf extends get_conf {
 
         if ($type === 'CONTROLLER') {
             $the_file = $this->KEYS['CONTROLLER']['P'] . $call_file . $this->KEYS['CONTROLLER']['S'];
-        } elseif ($type === 'ajax') {
+        } elseif ($type === 'AJAX') {
             $the_file = $this->KEYS['AJAX']['P'] . $call_file . $this->KEYS['AJAX']['S'];
         }
 
@@ -73,19 +73,16 @@ class conf extends get_conf {
     public function get_name($path, $type = 'CONTROLLER') {
         $call_file = basename($path);
 
+        $the_keys = '';
         if ($type === 'CONTROLLER') {
             $the_keys = [$this->KEYS['CONTROLLER']['P'], $this->KEYS['CONTROLLER']['S']];
-        } elseif ($type === 'ajax') {
-            $the_keys = array($this->KEYS['AJAX']['P'], $this->KEYS['AJAX']['S']);
+        } elseif ($type === 'AJAX') {
+            $the_keys = [$this->KEYS['AJAX']['P'], $this->KEYS['AJAX']['S']];
         }
 
         $the_file = str_replace($the_keys, '', $call_file);
         return ($path === $call_file) ? $the_file : dirname($path) . '/' . $the_file;
         unset($path, $type, $call_file, $the_keys);
-    }
-
-    function __destruct() {
-        unset($this);
     }
 
 }

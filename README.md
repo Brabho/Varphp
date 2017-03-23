@@ -12,7 +12,7 @@ Use [HelperClass] (https://github.com/krishnaTORQUE/HelperClass) Instead.
 Fast, LightWeight & Powerful
 
 ### Tested
-PHP     (5.5, 5.6, 7.0)
+PHP     (5.5, 5.6, 7.0, 7.1)
 
 Apache  (2.2, 2.4)
 
@@ -20,7 +20,7 @@ Apache  (2.2, 2.4)
 Enable Rewrite Module On
 
 ### Version
-Stable Version 3.1
+Stable Version 3.3
 
 ### License
 (C) 2013 - 2017 under GNU General Public License Version 2.
