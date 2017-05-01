@@ -1,14 +1,13 @@
 <?php
 /*
- * Default Error Page
+ * Default / Static Error Page
  */
 
 while (ob_get_contents()) {
     ob_end_clean();
 }
 
-header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-header('Status: 404 Not Found');
+http_response_code(404);
 ?>
 <!DOCTYPE html>
 <html>

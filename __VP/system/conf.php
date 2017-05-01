@@ -48,11 +48,10 @@ class conf extends get_conf {
     }
 
     /*
-     * Real File
-     * [Actual File Name]
+     * Real / Actual File Name
      */
 
-    public function get_file($path, $type = 'CONTROLLER') {
+    protected function get_file($path, $type = 'CONTROLLER') {
         $call_file = basename($path);
 
         if ($type === 'CONTROLLER') {
@@ -66,11 +65,10 @@ class conf extends get_conf {
     }
 
     /*
-     * File Name
-     * [Alice Name]
+     * File / Alice Name
      */
 
-    public function get_name($path, $type = 'CONTROLLER') {
+    protected function get_name($path, $type = 'CONTROLLER') {
         $call_file = basename($path);
 
         $the_keys = '';

@@ -11,12 +11,12 @@ class err extends VP\Controller\hooks {
     }
 
     /*
+     * Page not Found
      * Error 404
      */
 
     public function e404() {
-        header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-        header('Status: 404 Not Found');
+        http_response_code(404);
 
         $this->META_SET([
             'TITLE' => '404 Error',
@@ -34,8 +34,7 @@ class err extends VP\Controller\hooks {
      */
 
     public function maintain() {
-        header($_SERVER['SERVER_PROTOCOL'] . ' 503 Service Temporarily Unavailable');
-        header('Status: 503 Service Temporarily Unavailable');
+        http_response_code(503);
 
         $this->META_SET([
             'TITLE' => '503 Error',

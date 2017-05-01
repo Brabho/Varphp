@@ -1,11 +1,9 @@
 <?php
 
 /*
- * Main
- * BootLoader
- * BootStrap
+ * Main / BootLoader / BootStrap
  */
-if (!defined('ROOT')) {
+if (!defined('ROOT') || !defined('PATH')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 

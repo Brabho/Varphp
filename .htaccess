@@ -8,6 +8,8 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    ## Un Comment the code below for directory
+    #RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.+)$ index.php/$1 [QSA,L]
 </IfModule>
@@ -16,4 +18,4 @@ Options -Indexes
 SetEnv ERROR_PATH "__VP/includes/error.php"
 
 ## Set Root Path
-SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v3.3/"
+SetEnv ROOT_PATH "c:/xampp/htdocs/www/Varphp/v3.4/"

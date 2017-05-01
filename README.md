@@ -2,15 +2,15 @@
 # Varphp
 
 ### Description
-PHP nano MVC Pattern. (Model View Controller)
+PHP mini MVC Pattern. (Model View Controller)
 
 Only MVC nothing else. Its not a framework.
 
-No Library or Class/Functions Added. Use HelperClass Instead.
+No Library or Class / Functions Added. Use HelperClass Instead.
 
-[HelperClass] (https://github.com/Brabho/HelperClass)
+`HelperClass` https://github.com/krishnaTORQUE/Varphp
 
-Fast, LightWeight & Powerful
+Fast, Lightweight & Powerful
 
 ### Tested
 PHP     (5.5, 5.6, 7.0, 7.1)
@@ -21,7 +21,7 @@ Apache  (2.2, 2.4)
 Enable Rewrite Module On
 
 ### Version
-Stable Version 3.3
+Stable Version 3.4
 
 ### License
 (C) 2013 - 2017 under GNU General Public License Version 2.

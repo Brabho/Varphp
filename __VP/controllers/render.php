@@ -27,14 +27,14 @@ class render extends urls {
         $this->SUB_PATHS = 0;
 
         /*
-         * Remove index.php If Exists on URI
+         * Remove index.php If Exists in URI
          */
+
         $fpath = $this->URL('FPATH');
         if (preg_match('/index.php/i', $fpath)) {
             $fpath = trim(str_ireplace('index.php', '', $fpath), '/');
             header('Location: ' . $this->URL('APP') . $fpath);
         }
-        unset($fpath);
 
         $this->HEADER = ROOT . $this->PATH('VP', 'includes') . 'header.php';
         $this->FOOTER = ROOT . $this->PATH('VP', 'includes') . 'footer.php';
@@ -49,10 +49,12 @@ class render extends urls {
 
         $this->META_DETAILS = [];
         if ($this->HOME()) {
+
             $this->META_DETAILS['TITLE'] = $this->APP['NAME'];
             $this->META_DETAILS['DESCRIPTION'] = $this->META['DESCRIPTION'];
             $this->META_DETAILS['KEYWORDS'] = $this->META['KEYWORDS'];
         } else {
+
             $this->META_DETAILS['TITLE'] = ucwords($this->URL('PATHS')[0]) . $this->META['SEPARATE'] . $this->APP['NAME'];
             $this->META_DETAILS['DESCRIPTION'] = $this->META['DESCRIPTION'] . $this->META['STICK']['DESCRIPTION'];
             $this->META_DETAILS['KEYWORDS'] = $this->META['KEYWORDS'] . $this->META['STICK']['KEYWORDS'];
@@ -89,11 +91,10 @@ class render extends urls {
                 }
             }
         }
-        unset($para, $func);
     }
 
     /*
-     * Final Render
+     * Final Rendering
      */
 
     protected function RENDER() {

@@ -10,7 +10,7 @@ if (!defined('MAIN')) {
 
 /*
  * Hooks Class
- * [Middle/Joint/Marge]
+ * Middle / Joint / Marge
  */
 
 class hooks extends render {

@@ -1,5 +1,11 @@
 # Change Log & History
 
+#### 01-05-2017
+    Stable Version 3.4
+    Stability Improved
+    Tags Attribute Changes
+    Ajax Controller Improved
+
 #### 23-03-2017
     Stable Version 3.3
 

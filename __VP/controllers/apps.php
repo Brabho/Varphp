@@ -22,8 +22,10 @@ class apps extends urls {
         parent::__construct();
 
         if ($this->MAINTAIN()) {
+
             $this->ERROR('maintain');
         } else {
+
             if ($this->AJAX()) {
                 $this->ajax_ctrl();
             } else {
@@ -44,7 +46,9 @@ class apps extends urls {
          */
 
         $mainController = $this->get_file($path . 'maincontroller') . '.php';
+
         if (file_exists($mainController)) {
+
             require $mainController;
             if (class_exists('mainController')) {
                 new \mainController();
@@ -65,8 +69,9 @@ class apps extends urls {
 
             /*
              * Getting Controller
-             * [File and Class / Controller]
+             * File and Class / Controller
              */
+
             $param = $this->URL('PATHS');
             array_shift($param);
 
@@ -123,7 +128,7 @@ class apps extends urls {
             }
 
             /*
-             * Render error if path longer than giving
+             * Render error if path longer than giving in Sub Paths
              */
             if (count($param) > $call->SUB_PATHS) {
                 $error = true;
@@ -147,26 +152,10 @@ class apps extends urls {
          * Request Method
          */
 
-        $req = null;
-        switch ($this->APP['AJAX']['METHOD']) {
-
-            case 'GET':
-                if ($this->AJAX_DETAILS['METHOD'] === 'GET') {
-                    $req = true;
-                }
-                break;
-
-            case 'POST':
-                if ($this->AJAX_DETAILS['METHOD'] === 'POST') {
-                    $req = true;
-                }
-                break;
-
-            case 'BOTH':
-                if ($this->AJAX_DETAILS['METHOD'] === 'GET' || $this->AJAX_DETAILS['METHOD'] === 'POST') {
-                    $req = true;
-                }
-                break;
+        if ($this->APP['AJAX']['METHOD'] === 'ANY') {
+            $req = true;
+        } elseif ($this->APP['AJAX']['METHOD'] === $this->AJAX_DETAILS['METHOD']) {
+            $req = true;
         }
 
         /*
@@ -174,7 +163,6 @@ class apps extends urls {
          * Request From
          */
 
-        $from = null;
         switch ($this->APP['AJAX']['FROM']) {
 
             case 'IN':
@@ -198,7 +186,6 @@ class apps extends urls {
          * Requested Type
          */
 
-        $path = null;
         if (isset($req, $from)) {
 
             if ($this->AJAX_DETAILS['REQUESTED'] === 'URL') {

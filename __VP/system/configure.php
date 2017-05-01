@@ -68,7 +68,7 @@ class configure {
                  * Request Method 
                  * [GET, POST, BOTH]
                  */
-                'METHOD' => 'BOTH',
+                'METHOD' => 'ANY',
                 /*
                  * Request From 
                  * [IN, OUT, BOTH]
@@ -100,11 +100,11 @@ class configure {
         /*
          * Default HTML Tags & Attributes
          */
-        $this->TAGS = [
-            'DOCTYPE' => '<!DOCTYPE html>',
-            'HTML' => '<html>',
-            'HEAD' => '<head>',
-            'BODY' => '<body>',
+        $this->TAGS_ATTR = [
+            'DOCTYPE' => '',
+            'HTML' => ' lang="en"',
+            'HEAD' => '',
+            'BODY' => '',
         ];
 
         /*
@@ -183,7 +183,6 @@ class configure {
             }
         }
         return $path;
-        unset($name, $sub, $allDirs, $path);
     }
 
     /*
@@ -204,7 +203,6 @@ class configure {
             return $this->PATH('AUTOLOADS') . $name;
         }
         return false;
-        unset($name);
     }
 
     /*
@@ -216,24 +214,23 @@ class configure {
             return $this->PATH('PLUGINS') . $name . '/';
         }
         return false;
-        unset($name);
     }
 
     /*
-     * System Details
+     * Varphp System Details
      */
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.3',
+            'VERSION' => '3.4',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;
     }
 
     /*
-     * Setting up Configuration
-     * Do not call this Method *
+     * Setting up the Configuration
+     * = DO NOT CALL THIS FUNCTION =
      */
 
     protected function SETS() {
