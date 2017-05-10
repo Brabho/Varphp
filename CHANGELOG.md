@@ -1,5 +1,15 @@
 # Change Log & History
 
+#### 10-05-2017
+    Stable Version 3.5
+
+    Improved:
+        Stability
+        Speed
+        Performance
+        hooks.php
+        apps.php
+
 #### 01-05-2017
     Stable Version 3.4
     Stability Improved

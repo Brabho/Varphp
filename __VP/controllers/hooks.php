@@ -34,8 +34,8 @@ class hooks extends render {
                     continue;
                 }
                 $autoload_file = $autoload_path . $autoload;
-                if ($this->AUTOLOAD_ACTIVE($autoload) && file_exists($autoload_file)) {
-                    require_once $autoload_file;
+                if ($this->AUTOLOAD_ACTIVE($autoload)) {
+                    require $autoload_file;
                 }
             }
         }
@@ -50,14 +50,13 @@ class hooks extends render {
         $plugins_path = ROOT . $this->PATH('PLUGINS');
         if (file_exists($plugins_path)) {
             $plugins_list = scandir($plugins_path);
-
             foreach ($plugins_list as $plugin) {
                 if ($plugin === '.' || $plugin === '..') {
                     continue;
                 }
                 $plugin_contl = $plugins_path . $plugin . '/controller.php';
                 if ($this->PLUGIN_ACTIVE($plugin) && file_exists($plugin_contl)) {
-                    require_once $plugin_contl;
+                    require $plugin_contl;
                 }
             }
         }
@@ -65,5 +64,3 @@ class hooks extends render {
     }
 
 }
-
-?>

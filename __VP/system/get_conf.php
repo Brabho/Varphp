@@ -29,4 +29,3 @@ if (class_exists('_config')) {
     }
 
 }
-?>

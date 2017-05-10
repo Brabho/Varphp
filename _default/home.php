@@ -35,5 +35,3 @@ class home extends VP\Controller\hooks {
     }
 
 }
-
-?>

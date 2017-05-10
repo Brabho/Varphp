@@ -21,15 +21,26 @@ class apps extends urls {
     function __construct() {
         parent::__construct();
 
-        if ($this->MAINTAIN()) {
+        /*
+         * Error If Exists index.php
+         */
 
-            $this->ERROR('maintain');
+        if (strtolower($this->URL('PATHS')[0]) === 'index.php' ||
+                preg_match('@index\.php@i', $this->URL('FPATH'))) {
+
+            $this->ERROR('e404');
         } else {
 
-            if ($this->AJAX()) {
-                $this->ajax_ctrl();
+            if ($this->MAINTAIN()) {
+
+                $this->ERROR('maintain');
             } else {
-                $this->view_ctrl();
+
+                if ($this->AJAX()) {
+                    $this->ajax_ctrl();
+                } else {
+                    $this->view_ctrl();
+                }
             }
         }
     }
@@ -206,7 +217,7 @@ class apps extends urls {
 
             require ROOT . $path . '.php';
             $path = explode('/', $path);
-            $class = $this->get_name($path[count($path) - 1], 'AJAX');
+            $class = $this->get_name(end($path), 'AJAX');
             $class = str_replace('-', '_', $class);
 
             if (class_exists($class)) {
@@ -228,5 +239,3 @@ class apps extends urls {
     }
 
 }
-
-?>

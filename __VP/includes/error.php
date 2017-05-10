@@ -28,7 +28,6 @@ http_response_code(404);
                 margin: 10% auto;
                 padding: 15px;
                 text-align: center;
-                text-shadow: 1px 1px #fff;
             }
         </style>
     </head>

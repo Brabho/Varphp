@@ -23,6 +23,7 @@ class conf extends get_conf {
      */
 
     protected function ERROR($arg = null) {
+
         while (ob_get_contents()) {
             ob_end_clean();
         }
@@ -45,6 +46,8 @@ class conf extends get_conf {
         } else {
             require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
         }
+
+        die();
     }
 
     /*
@@ -84,5 +87,3 @@ class conf extends get_conf {
     }
 
 }
-
-?>

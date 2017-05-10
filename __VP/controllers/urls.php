@@ -137,5 +137,3 @@ class urls extends conf {
     }
 
 }
-
-?>

@@ -66,7 +66,6 @@ class configure {
             'AJAX' => [
                 /*
                  * Request Method 
-                 * [GET, POST, BOTH]
                  */
                 'METHOD' => 'ANY',
                 /*
@@ -144,7 +143,7 @@ class configure {
         ];
 
         /*
-         * Extra Global Array or Value
+         * Extra Global Array
          */
         $this->EXTRA = [];
     }
@@ -222,7 +221,7 @@ class configure {
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.4',
+            'VERSION' => '3.5',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;
@@ -276,5 +275,3 @@ class configure {
     }
 
 }
-
-?>

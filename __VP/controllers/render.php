@@ -26,16 +26,6 @@ class render extends urls {
 
         $this->SUB_PATHS = 0;
 
-        /*
-         * Remove index.php If Exists in URI
-         */
-
-        $fpath = $this->URL('FPATH');
-        if (preg_match('/index.php/i', $fpath)) {
-            $fpath = trim(str_ireplace('index.php', '', $fpath), '/');
-            header('Location: ' . $this->URL('APP') . $fpath);
-        }
-
         $this->HEADER = ROOT . $this->PATH('VP', 'includes') . 'header.php';
         $this->FOOTER = ROOT . $this->PATH('VP', 'includes') . 'footer.php';
 
@@ -136,5 +126,3 @@ class render extends urls {
     }
 
 }
-
-?>

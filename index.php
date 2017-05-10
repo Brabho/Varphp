@@ -12,7 +12,7 @@
            | |  | | \ V /| |
            |_|  |_|  \_/  \____|
 
-            Version: 3.4
+            Version: 3.5
 */
 define('ROOT', str_ireplace('\\', '/', dirname(__FILE__)) . '/');
 
@@ -26,4 +26,3 @@ if (strlen($SCRIPT_NAME) > 1) {
 unset($SCRIPT_NAME);
 
 require ROOT . '__VP/system/boot.php';
-?>

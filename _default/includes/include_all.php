@@ -14,4 +14,3 @@ if (!function_exists('include_all')) {
 }
 
 array_push($this->ADD_FUNC['IN_HEAD'], 'include_all');
-?>

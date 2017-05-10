@@ -47,5 +47,3 @@ class err extends VP\Controller\hooks {
     }
 
 }
-
-?>

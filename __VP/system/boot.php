@@ -7,12 +7,10 @@ if (!defined('ROOT') || !defined('PATH')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
-if (preg_match_all('/index\.php/', $_SERVER['PHP_SELF']) &&
-        preg_match_all('/index\.php/', $_SERVER['SCRIPT_FILENAME'])) {
-
+if (preg_match('@index\.php@i', $_SERVER['PHP_SELF']) &&
+        preg_match('@index\.php@i', $_SERVER['SCRIPT_FILENAME'])) {
 
     define('MAIN', true);
-
     ob_start();
 
     /*
@@ -34,7 +32,5 @@ if (preg_match_all('/index\.php/', $_SERVER['PHP_SELF']) &&
 
     new VP\Controller\apps();
 } else {
-
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
-?>
