@@ -8,7 +8,7 @@ Only MVC nothing else. Its not a framework.
 
 No Library or Class / Functions Added. Use `HelperClass` Instead.
 
-HelperClass >> https://github.com/krishnaTORQUE/Varphp
+HelperClass >> https://github.com/krishnaTORQUE/HelperClass
 
 Host Multiple Apps, Fast, Lightweight & Powerful
 
