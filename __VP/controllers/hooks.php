@@ -15,8 +15,15 @@ if (!defined('MAIN')) {
 
 class hooks extends render {
 
+    public $APP_URL;
+    public $APP_PATH;
+
     function __construct() {
         parent::__construct();
+
+        $this->APP_URL = $this->URL('APP') . $this->PATH('ACTIVE_APP');
+        $this->APP_PATH = ROOT . $this->PATH('ACTIVE_APP');
+
         $this->gettingAutoloads();
         $this->gettingPlugins();
     }

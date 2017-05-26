@@ -110,7 +110,7 @@ class configure {
          * Meta Tags and Details
          */
         $this->META = [
-            'SEPARATE' => ' | ',
+            'SEPARATE' => ' - ',
             'DESCRIPTION' => '',
             'KEYWORDS' => '',
             /*
@@ -221,7 +221,7 @@ class configure {
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.5',
+            'VERSION' => '3.6',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;

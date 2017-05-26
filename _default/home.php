@@ -20,9 +20,7 @@ class home extends VP\Controller\hooks {
             /*
              * Error
              */
-            require ROOT . $this->PATH('ACTIVE_APP') . 'err.php';
-            $err = new err();
-            $err->e404();
+            $this->ERROR('e404');
         } else {
             /*
              * View

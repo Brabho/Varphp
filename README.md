@@ -21,7 +21,7 @@ Apache  (2.2, 2.4)
 Enable Rewrite Module On
 
 ### Version
-Stable Version 3.5
+Stable Version 3.6
 
 ### License
 (C) 2013 - 2017 under GNU General Public License Version 2.

@@ -1,5 +1,14 @@
 # Change Log & History
 
+#### 26-05-2017
+    Stable Version 3.6
+    Review All Files
+    Stability Improved
+
+    Added:
+        APP_URL
+        APP_PATH
+
 #### 10-05-2017
     Stable Version 3.5
 
