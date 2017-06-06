@@ -1,5 +1,13 @@
 # Change Log & History
 
+#### 06-06-2017
+    Stable Version 3.7
+    Nginx Supported
+    Security Improved
+
+    Added:
+        `ACCEPT_METHODS`
+
 #### 26-05-2017
     Stable Version 3.6
     Review All Files

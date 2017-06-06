@@ -10,10 +10,12 @@ No Library or Class / Functions Added. Use `HelperClass` Instead.
 
 HelperClass >> https://github.com/krishnaTORQUE/HelperClass
 
-Host Multiple Apps, Fast, Lightweight & Powerful
+Host Multiple Apps, Fast, Lightweight, Powerful & Secure
 
 ### Tested
 PHP     (5.5, 5.6, 7.0, 7.1)
+
+Nginx   (1.9, 1.10, 1.12)
 
 Apache  (2.2, 2.4)
 
@@ -21,7 +23,7 @@ Apache  (2.2, 2.4)
 Enable Rewrite Module On
 
 ### Version
-Stable Version 3.6
+Stable Version 3.7
 
 ### License
 (C) 2013 - 2017 under GNU General Public License Version 2.

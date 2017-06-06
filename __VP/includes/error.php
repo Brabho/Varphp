@@ -1,6 +1,7 @@
 <?php
 /*
- * Default / Static Error Page
+ * Default Static Error Page
+ * Change or Set Default Static Error Page From Server Config File
  */
 
 while (ob_get_contents()) {
@@ -12,20 +13,19 @@ http_response_code(404);
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8"/>
+        <meta charset="UTF-8"/>
         <title>Error - Not found or Down</title>
         <meta name="description" content="Page not found or Down for Maintain"/>
         <style type="text/css">
             body{
-                background: #fafafa;
+                background: #fbfbfb;
                 font-family: Tahoma, Helvetica, Arial, sans-serif;
             }
             .main{
-                background: #fdfdfd;
                 border: 5px dashed #aaa;
                 width: 40%;
                 border-radius: 5px;
-                margin: 10% auto;
+                margin: 5% auto;
                 padding: 15px;
                 text-align: center;
             }
@@ -33,9 +33,11 @@ http_response_code(404);
     </head>
     <body>
         <div class="main">
-            <h1>Page Not Found</h1> 
-            <h1>or</h1>
-            <h1>Down For Maintain</h1>
+            <h1>
+                Page Not Found <br/>
+                or <br/>
+                Down For Maintain
+            </h1>
         </div>
     </body>
 </html> <?php die(); ?>

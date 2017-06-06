@@ -23,8 +23,26 @@ class err extends VP\Controller\hooks {
             'DESCRIPTION' => 'Page not found'
         ]);
 
-        require ROOT . $this->PATH('ACTIVE_APP') . 'includes/include_all.php';
-        require ROOT . $this->PATH('ACTIVE_APP') . 'view/404.php';
+        require $this->APP_PATH . 'includes/include_all.php';
+        require $this->APP_PATH . 'view/404.php';
+        $this->RENDER();
+    }
+
+    /*
+     * Method not allow
+     * Error 403
+     */
+
+    public function e403() {
+        http_response_code(403);
+
+        $this->META_SET([
+            'TITLE' => '403 Error',
+            'DESCRIPTION' => 'Request Method not allow'
+        ]);
+
+        require $this->APP_PATH . 'includes/include_all.php';
+        require $this->APP_PATH . 'view/403.php';
         $this->RENDER();
     }
 
@@ -41,8 +59,8 @@ class err extends VP\Controller\hooks {
             'DESCRIPTION' => 'Under Construction Or Down For Maintenance'
         ]);
 
-        require ROOT . $this->PATH('ACTIVE_APP') . 'includes/include_all.php';
-        require ROOT . $this->PATH('ACTIVE_APP') . 'view/503.php';
+        require $this->APP_PATH . 'includes/include_all.php';
+        require $this->APP_PATH . 'view/503.php';
         $this->RENDER();
     }
 

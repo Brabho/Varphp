@@ -29,17 +29,44 @@ class apps extends urls {
                 preg_match('@index\.php@i', $this->URL('FPATH'))) {
 
             $this->ERROR('e404');
+        } elseif (preg_match('@\.php@i', $this->URL('FPATH'))) {
+
+            $this->ERROR('e404');
         } else {
 
-            if ($this->MAINTAIN()) {
+            /*
+             * Maintain Mode
+             */
 
+            if ($this->MAINTAIN()) {
                 $this->ERROR('maintain');
             } else {
 
-                if ($this->AJAX()) {
-                    $this->ajax_ctrl();
+                /*
+                 * Checking Accepted Methods
+                 */
+
+                $accept_methods = null;
+
+                if ($this->APP['ACCEPT_METHODS'] === 'ANY') {
+                    $accept_methods = true;
+                } elseif (in_array($_SERVER['REQUEST_METHOD'], $this->APP['ACCEPT_METHODS'])) {
+                    $accept_methods = true;
+                }
+
+                /*
+                 * Final Rendering
+                 */
+
+                if (isset($accept_methods)) {
+
+                    if ($this->AJAX()) {
+                        $this->ajax_ctrl();
+                    } else {
+                        $this->view_ctrl();
+                    }
                 } else {
-                    $this->view_ctrl();
+                    $this->ERROR('e403');
                 }
             }
         }

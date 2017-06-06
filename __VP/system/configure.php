@@ -32,7 +32,7 @@ class configure {
             /*
              * Charset
              */
-            'CHARSET' => 'utf-8',
+            'CHARSET' => 'UTF-8',
             /*
              * App Time Zone
              */
@@ -74,6 +74,11 @@ class configure {
                  */
                 'FROM' => 'BOTH'
             ],
+            /*
+             * Accept HTTP Request Methods
+             * Set to `ANY` for All kind of Request Methods
+             */
+            'ACCEPT_METHODS' => ['GET', 'POST'],
         ];
 
         /*
@@ -221,7 +226,7 @@ class configure {
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.6',
+            'VERSION' => '3.7',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;

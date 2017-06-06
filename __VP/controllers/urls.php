@@ -73,12 +73,13 @@ class urls extends conf {
      */
 
     public function AJAX() {
+
         $status = false;
 
         $this->AJAX_DETAILS = [];
         $this->AJAX_DETAILS['REQUEST_TO'] = $this->URL('FULL');
 
-        $header = getallheaders();
+        $header = $this->get_headers();
 
         /*
          * Requested By
@@ -134,6 +135,16 @@ class urls extends conf {
             return true;
         }
         return false;
+    }
+
+    private function get_headers() {
+        $headers = [];
+        foreach ($_SERVER as $name => $value) {
+            if (substr($name, 0, 5) === 'HTTP_') {
+                $headers[str_ireplace(' ', '-', ucwords(strtolower(str_ireplace('_', ' ', substr($name, 5)))))] = $value;
+            }
+        }
+        return $headers;
     }
 
 }

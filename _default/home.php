@@ -26,8 +26,8 @@ class home extends VP\Controller\hooks {
              * View
              */
             $this->META_DETAILS['TITLE'] = 'Varphp v' . $this->VARPHP('VERSION');
-            require ROOT . $this->PATH('ACTIVE_APP') . 'includes/include_all.php';
-            require ROOT . $this->PATH('ACTIVE_APP') . 'view/home.php';
+            require $this->APP_PATH . 'includes/include_all.php';
+            require $this->APP_PATH . 'view/home.php';
             $this->RENDER();
         }
     }

@@ -1,0 +1,21 @@
+<Files .htaccess>
+    Order deny,allow
+    Deny from all
+    Allow from none
+</Files>
+
+Options -Indexes
+
+## Varphp Rewrite URL
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+#    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+)$ index.php/$1 [QSA,L]
+</IfModule>
+
+## Varphp Set Static Error File Path
+SetEnv ERROR_PATH "__VP/includes/error.php"
+
+## Varphp Set Root Path (Recommend)
+SetEnv ROOT_PATH "c:/xampp/htdocs/www/varphp/"

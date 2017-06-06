@@ -1,9 +1,8 @@
 body{
-    background: #fafafa;
+    background: #fbfbfb;
     font-family: Tahoma, Helvetica, Arial, sans-serif;
 }
 .main{
-    background: #fdfdfd;
     border: 5px dashed #aaa;
     width: 40%;
     border-radius: 5px;
