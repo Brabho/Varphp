@@ -46,7 +46,7 @@ class apps extends urls {
                  * Checking Accepted Methods
                  */
 
-                $accept_methods = null;
+                $accept_methods = false;
 
                 if ($this->APP['ACCEPT_METHODS'] === 'ANY') {
                     $accept_methods = true;
@@ -58,7 +58,7 @@ class apps extends urls {
                  * Final Rendering
                  */
 
-                if (isset($accept_methods)) {
+                if ($accept_methods) {
 
                     if ($this->AJAX()) {
                         $this->ajax_ctrl();

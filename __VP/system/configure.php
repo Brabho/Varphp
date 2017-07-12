@@ -140,7 +140,7 @@ class configure {
             /*
              * Set Memory Limit
              */
-            'MEMORY_LIMIT' => '16M',
+            'MEMORY_LIMIT' => '128M',
             /*
              * Cookie HTTP Only
              */
@@ -226,7 +226,7 @@ class configure {
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.7',
+            'VERSION' => '3.7.2',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;

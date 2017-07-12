@@ -6,7 +6,7 @@
 
 Options -Indexes
 
-## Varphp Rewrite URL
+## Varphp Rewrite URL ##
 <IfModule mod_rewrite.c>
     RewriteEngine On
 #    RewriteCond %{REQUEST_FILENAME} !-d
@@ -14,8 +14,8 @@ Options -Indexes
     RewriteRule ^(.+)$ index.php/$1 [QSA,L]
 </IfModule>
 
-## Varphp Set Static Error File Path
+## Varphp Set Static Error File Path ##
 SetEnv ERROR_PATH "__VP/includes/error.php"
 
-## Varphp Set Root Path (Recommend)
+## Varphp Set Root Path (* Recommend *) ##
 SetEnv ROOT_PATH "c:/xampp/htdocs/www/varphp/"

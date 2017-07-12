@@ -107,7 +107,7 @@ class urls extends conf {
             $pattern = '@' . $this->URL('APP') . '@i';
             $subject = $_SERVER['HTTP_REFERER'];
 
-            if (preg_match_all($pattern, $subject)) {
+            if (preg_match($pattern, $subject)) {
                 $this->AJAX_DETAILS['FROM'] = 'IN';
             } else {
                 $this->AJAX_DETAILS['FROM'] = 'OUT';

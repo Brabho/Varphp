@@ -29,6 +29,7 @@ class conf extends get_conf {
         }
 
         $path = ROOT . $this->PATH('ACTIVE_APP');
+
         if (file_exists($path . 'err.php')) {
             require $path . 'err.php';
 

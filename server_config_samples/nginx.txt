@@ -11,25 +11,42 @@ server {
         try_files $uri $uri/ =404;
     }
 
-    location /varphp/ {
-        ## Varphp Rewrite URL
-        try_files $uri /varphp/index.php$args;
+    location ~ /\.ht {
+        deny all;
     }
 
+    location /varphp/ {
+        ## Varphp Rewrite URL ##
+        try_files $uri /varphp/index.php?$args;
+    }
+
+    ## For Only PHP ##
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
         fastcgi_pass unix:/run/php/php7.1-fpm.sock;
 
     	include fastcgi_params;
 
-    	## Varphp Set Static Error File Path
+    	## Varphp Set Static Error File Path ##
     	fastcgi_param ERROR_PATH "__VP/includes/error.php";
 
-    	## Varphp Set Root Path (Recommend)
+    	## Varphp Set Root Path (* Recommend *) ##
     	fastcgi_param ROOT_PATH "/var/www/html/varphp/";
     }
 
-    location ~ /\.ht {
-        deny all;
+    ## For HHVM ##
+    location ~ \.(hh|php)$ {
+        fastcgi_keep_conn on;
+        fastcgi_pass unix:/var/run/hhvm/hhvm.sock;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+
+        ## Varphp Set Static Error File Path ##
+    	fastcgi_param ERROR_PATH "__VP/includes/error.php";
+
+    	## Varphp Set Root Path (* Recommend *) ##
+    	fastcgi_param ROOT_PATH "/var/www/html/varphp/";
     }
+
 }

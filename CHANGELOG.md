@@ -1,8 +1,13 @@
 # Change Log & History
 
+#### 12-07-2017
+    Stable Version 3.7.2
+    Stability Improved
+
 #### 06-06-2017
     Stable Version 3.7
     Nginx Supported
+    HHVM Supported
     Security Improved
 
     Added:

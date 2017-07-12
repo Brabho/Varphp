@@ -7,7 +7,7 @@ if (!defined('ROOT') || !defined('PATH')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
-if (preg_match('@index\.php@i', $_SERVER['PHP_SELF']) &&
+if (preg_match('@index\.php@i', $_SERVER['PHP_SELF']) ||
         preg_match('@index\.php@i', $_SERVER['SCRIPT_FILENAME'])) {
 
     define('MAIN', true);
