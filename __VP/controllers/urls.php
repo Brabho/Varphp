@@ -15,9 +15,11 @@ if (!defined('MAIN')) {
 class urls extends conf {
 
     public $AJAX_DETAILS;
+    public $SUB_PATHS;
 
     function __construct() {
         parent::__construct();
+        $this->SUB_PATHS = 2;
     }
 
     /*
@@ -35,7 +37,7 @@ class urls extends conf {
             if ($dash === 'dash') {
                 $full = preg_replace('@_@i', '-', $full);
             } elseif ($dash === 'und') {
-                $full = preg_replace('@-@i', '_', $full);
+                $full = preg_replace('@\-@i', '_', $full);
             }
         }
         $full = trim($full, " \/\t\n\r");
@@ -57,7 +59,7 @@ class urls extends conf {
 
         $urls = [
             'APP' => $this->OPT['PROTOCOL'] . $_SERVER['HTTP_HOST'] . PATH,
-            'FULL' => $full . '/',
+            'FULL' => $full,
             'FPATH' => $fpath,
             'PATHS' => explode('/', $fpath),
             'QUERY' => $query,

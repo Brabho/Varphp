@@ -12,7 +12,7 @@
            | |  | | \ V /| |___ 
            |_|  |_|  \_/  \____|
 
-              Version: 3.7.2
+              Version: 3.7.4
  */
 define('ROOT', str_ireplace('\\', '/', dirname(__FILE__)) . '/');
 

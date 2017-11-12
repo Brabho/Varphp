@@ -15,7 +15,6 @@ if (!defined('MAIN')) {
 
 class render extends urls {
 
-    public $SUB_PATHS;
     public $HEADER;
     public $FOOTER;
     public $ADD_FUNC;
@@ -23,8 +22,6 @@ class render extends urls {
 
     function __construct() {
         parent::__construct();
-
-        $this->SUB_PATHS = 0;
 
         $this->HEADER = ROOT . $this->PATH('VP', 'includes') . 'header.php';
         $this->FOOTER = ROOT . $this->PATH('VP', 'includes') . 'footer.php';
@@ -99,14 +96,19 @@ class render extends urls {
          * Finally Rendering
          */
 
-        if (file_exists($this->HEADER)) {
-            require $this->HEADER;
-        }
+        if (count($this->URL('PATHS')) > $this->SUB_PATHS) {
+            $this->ERROR('e404');
+        } else {
 
-        echo $output_buffer;
+            if (file_exists($this->HEADER)) {
+                require $this->HEADER;
+            }
 
-        if (file_exists($this->FOOTER)) {
-            require $this->FOOTER;
+            echo $output_buffer;
+
+            if (file_exists($this->FOOTER)) {
+                require $this->FOOTER;
+            }
         }
 
         /*

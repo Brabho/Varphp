@@ -13,7 +13,7 @@ http_response_code(404);
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8"/>
+        <meta charset="utf-8"/>
         <title>Error - Not found or Down</title>
         <meta name="description" content="Page not found or Down for Maintain"/>
         <style type="text/css">

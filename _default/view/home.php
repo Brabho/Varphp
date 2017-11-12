@@ -7,7 +7,7 @@ if (!defined('MAIN')) {
 
     <img src="<?php echo $this->APP_URL; ?>ico1.png"/>
 
-    <h2 style="text-align: center">Welcome to Varphp v<?php echo $this->VARPHP('VERSION'); ?></h2>
+    <h2>Welcome to Varphp v<?php echo $this->VARPHP('VERSION'); ?></h2>
 
     <h4>URL: <?php echo $this->URL('APP'); ?></h4>
 

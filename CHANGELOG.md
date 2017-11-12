@@ -1,5 +1,10 @@
 # Change Log & History
 
+#### 13-11-2017
+    Stable Version 3.7.4
+    Bugs Fixed
+    Stability Improved
+
 #### 12-07-2017
     Stable Version 3.7.2
     Stability Improved

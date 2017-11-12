@@ -6,7 +6,7 @@ PHP mini MVC Pattern. (Model View Controller)
 
 Only MVC nothing else. Its not a framework.
 
-No Library or Class / Functions Added. Use `HelperClass` Instead.
+No Library or Class or Functions Added. Use `HelperClass` Instead.
 
 HelperClass >> https://github.com/krishnaTORQUE/HelperClass
 
@@ -19,13 +19,13 @@ Nginx (1.9, 1.10, 1.12)
 
 Apache (2.2, 2.4)
 
-HHVM (3.20.0)
+HHVM (3.20)
 
 ### Note
 Enable Rewrite Module On
 
 ### Version
-Stable Version 3.7.2
+Stable Version 3.7.4
 
 ### License
 (C) 2013 - 2017 under GNU General Public License Version 2.

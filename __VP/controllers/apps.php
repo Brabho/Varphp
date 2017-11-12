@@ -97,8 +97,6 @@ class apps extends urls {
              * If no Main Controller
              */
 
-            $error = false;
-
             if ($this->HOME()) {
                 $class = 'home';
             } elseif (array_key_exists(0, $this->URL('PATHS'))) {
@@ -120,7 +118,7 @@ class apps extends urls {
                 if (class_exists($class)) {
                     $call = new $class($param);
                 } else {
-                    $error = true;
+                    $this->ERROR('e404');
                 }
 
                 /*
@@ -133,10 +131,10 @@ class apps extends urls {
                     $call = new \dynamic($param);
                     $class = 'dynamic';
                 } else {
-                    $error = true;
+                    $this->ERROR('e404');
                 }
             } else {
-                $error = true;
+                $this->ERROR('e404');
             }
 
             /*
@@ -156,27 +154,16 @@ class apps extends urls {
                         $call->dynamic($param);
                         array_shift($param);
                     } else {
-                        $error = true;
+                        $this->ERROR('e404');
                     }
                 } elseif (method_exists($class, 'index')) {
                     $call->index($param);
                 } else {
-                    $error = true;
+                    $this->ERROR('e404');
                 }
             }
-
-            /*
-             * Render error if path longer than giving in Sub Paths
-             */
-            if (count($param) > $call->SUB_PATHS) {
-                $error = true;
-            }
-
-            if ($error) {
-                $this->ERROR('e404');
-            }
         }
-        unset($path, $error, $call, $class, $method, $param, $direct);
+        unset($path, $call, $class, $method, $param, $direct);
     }
 
     /*

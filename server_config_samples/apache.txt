@@ -18,4 +18,4 @@ Options -Indexes
 SetEnv ERROR_PATH "__VP/includes/error.php"
 
 ## Varphp Set Root Path (* Recommend *) ##
-SetEnv ROOT_PATH "c:/xampp/htdocs/www/varphp/"
+SetEnv ROOT_PATH "/var/www/html/varphp/"

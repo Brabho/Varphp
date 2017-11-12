@@ -95,7 +95,7 @@ class configure {
                 'P' => '',
                 'S' => '',
                 /*
-                 * Method Name in Query String
+                 * Ajax Method Name in Query String
                  */
                 'QUERY' => 'm',
             ],
@@ -226,7 +226,7 @@ class configure {
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.7.2',
+            'VERSION' => '3.7.4',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;
