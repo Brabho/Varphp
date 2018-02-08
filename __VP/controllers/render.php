@@ -98,6 +98,8 @@ class render extends urls {
 
         if (count($this->URL('PATHS')) > $this->SUB_PATHS) {
             $this->ERROR('e404');
+        } elseif (!in_array($_SERVER['REQUEST_METHOD'], $this->PAGE_ACCEPT_METHODS)) {
+            $this->ERROR('e405');
         } else {
 
             if (file_exists($this->HEADER)) {

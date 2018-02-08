@@ -60,14 +60,14 @@ class configure {
              */
             'ENVT' => 'develop',
             /*
+             * Ajax Request Method Type
              * Ajax Request From
-             * Ajax Request Type
              */
             'AJAX' => [
                 /*
                  * Request Method 
                  */
-                'METHOD' => 'ANY',
+                'METHODS' => 'ANY',
                 /*
                  * Request From 
                  * [IN, OUT, BOTH]
@@ -195,7 +195,7 @@ class configure {
      */
 
     public function MAINTAIN() {
-        return ($this->APP['MODE'] === 'maintain' || file_exists(ROOT . '.maintain')) ? true : false;
+        return ($this->APP['MODE'] === 'maintain' || file_exists(ROOT . '.maintain'));
     }
 
     /*
@@ -226,7 +226,7 @@ class configure {
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.7.4',
+            'VERSION' => '3.8',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;
@@ -234,7 +234,7 @@ class configure {
 
     /*
      * Setting up the Configuration
-     * = DO NOT CALL THIS FUNCTION =
+      ## DO NOT CALL THIS FUNCTION ##
      */
 
     protected function SETS() {

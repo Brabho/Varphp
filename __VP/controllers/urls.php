@@ -16,10 +16,18 @@ class urls extends conf {
 
     public $AJAX_DETAILS;
     public $SUB_PATHS;
+    public $PAGE_ACCEPT_METHODS;
+    public $APP_URL;
+    public $APP_PATH;
 
     function __construct() {
         parent::__construct();
+
         $this->SUB_PATHS = 2;
+        $this->PAGE_ACCEPT_METHODS = ['GET', 'POST'];
+
+        $this->APP_URL = $this->URL('APP') . $this->PATH('ACTIVE_APP');
+        $this->APP_PATH = ROOT . $this->PATH('ACTIVE_APP');
     }
 
     /*
@@ -33,14 +41,14 @@ class urls extends conf {
         if ($ignore === true) {
             $full = strtolower($full);
         }
-        if ($dash) {
-            if ($dash === 'dash') {
-                $full = preg_replace('@_@i', '-', $full);
-            } elseif ($dash === 'und') {
-                $full = preg_replace('@\-@i', '_', $full);
-            }
+
+        if ($dash === 'dash') {
+            $full = preg_replace('@_@i', '-', $full);
+        } elseif ($dash === 'und') {
+            $full = preg_replace('@\-@i', '_', $full);
         }
-        $full = trim($full, " \/\t\n\r");
+
+        $full = $this->trims($full, " \/\t\n\r\\", true);
         $full = htmlspecialchars($full, ENT_QUOTES, $this->APP['CHARSET']);
 
         $fpath = parse_url($full, PHP_URL_PATH);
@@ -60,7 +68,7 @@ class urls extends conf {
         $urls = [
             'APP' => $this->OPT['PROTOCOL'] . $_SERVER['HTTP_HOST'] . PATH,
             'FULL' => $full,
-            'FPATH' => $fpath,
+            'FPATH' => '/' . $fpath,
             'PATHS' => explode('/', $fpath),
             'QUERY' => $query,
             'QUERIES' => $QUERIES,
@@ -129,7 +137,7 @@ class urls extends conf {
         if ($this->URL('APP') === $this->URL('FULL')) {
 
             return true;
-        } elseif (strlen($this->URL('FPATH')) < 1) {
+        } elseif ($this->URL('FPATH') === '/' || strlen($this->URL('FPATH')) < 2) {
 
             return true;
         } elseif (strlen($this->URL('PATHS')[0]) < 1) {
@@ -147,6 +155,17 @@ class urls extends conf {
             }
         }
         return $headers;
+    }
+
+    private function trims($content, $delmi = null, $white = null) {
+        $content = trim($content, $delmi);
+        $content = ltrim($content, $delmi);
+        $content = rtrim($content, $delmi);
+
+        if (isset($white)) {
+            $content = preg_replace('/\s+/', $white, $content);
+        }
+        return $content;
     }
 
 }

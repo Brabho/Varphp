@@ -4,7 +4,7 @@
 ### Description
 PHP mini MVC Pattern. (Model View Controller)
 
-Only MVC nothing else. Its not a framework.
+Only MVC nothing else. Its not a framework. You can say it is a Kernel.
 
 No Library or Class or Functions Added. Use `HelperClass` Instead.
 
@@ -25,10 +25,10 @@ HHVM (3.20)
 Enable Rewrite Module On
 
 ### Version
-Stable Version 3.7.4
+Stable Version 3.8
 
 ### License
-(C) 2013 - 2017 under GNU General Public License Version 2.
+(C) 2013 - 2017 under GNU GPL V2.
 
 ### Example
 ```php

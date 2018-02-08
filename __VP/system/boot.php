@@ -38,7 +38,7 @@ if (preg_match('@index\.php@i', $_SERVER['PHP_SELF']) ||
     require ROOT . '__VP/system/conf.php';
 
     /*
-     * Getting Controllers
+     * Getting Main Controllers
      */
 
     require ROOT . '__VP/controllers/urls.php';

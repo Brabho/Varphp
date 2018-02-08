@@ -1,5 +1,18 @@
 # Change Log & History
 
+#### -
+    Stable Version 3.8
+    Bugs Fixed
+    Stability Improved
+
+    Improved:
+        Main Controller
+        AJAX Controller
+        Route or Routing
+
+    Added:
+        In Page Request Method Filter   "PAGE_ACCEPT_METHODS"
+
 #### 13-11-2017
     Stable Version 3.7.4
     Bugs Fixed

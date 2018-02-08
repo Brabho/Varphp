@@ -33,16 +33,16 @@ class err extends VP\Controller\hooks {
      * Error 403
      */
 
-    public function e403() {
-        http_response_code(403);
+    public function e405() {
+        http_response_code(405);
 
         $this->META_SET([
-            'TITLE' => '403 Error',
+            'TITLE' => '405 Error',
             'DESCRIPTION' => 'Request Method not allow'
         ]);
 
         require $this->APP_PATH . 'includes/include_all.php';
-        require $this->APP_PATH . 'view/403.php';
+        require $this->APP_PATH . 'view/405.php';
         $this->RENDER();
     }
 
@@ -51,7 +51,7 @@ class err extends VP\Controller\hooks {
      * Error 503
      */
 
-    public function maintain() {
+    public function e503() {
         http_response_code(503);
 
         $this->META_SET([
