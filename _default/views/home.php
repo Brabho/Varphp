@@ -1,15 +1,24 @@
 <?php
+
+use VP\Controller\Apps;
+
 if (!defined('MAIN')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 ?>
-<div class="main">   
+<div class="main">
 
-    <img src="<?php echo $this->APP_URL; ?>ico1.png"/>
+    <img src="<?php echo Apps::$V->APP_URL; ?>favicon.png"/>
 
-    <h2>Welcome to Varphp v<?php echo $this->VARPHP('VERSION'); ?></h2>
+    <h2>Welcome to Varphp</h2>
 
-    <h4>URL: <?php echo $this->URL('APP'); ?></h4>
+    <h5>
+        Version: <?php echo Apps::$V->VARPHP('VERSION'); ?>
+        &nbsp;
+        Status: <?php echo Apps::$V->VARPHP('STATUS'); ?>
+    </h5>
+
+    <h4>URL: <?php echo Apps::$V->URL('APP'); ?></h4>
 
     <h4>ROOT: <?php echo ROOT; ?></h4>
 

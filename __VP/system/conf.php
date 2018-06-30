@@ -2,13 +2,13 @@
 
 namespace VP\System;
 
-use VP\System\get_conf;
+use VP\System\Get_Conf;
 
 if (!defined('MAIN')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
-class conf extends get_conf {
+class Conf extends Get_Conf {
     /*
      * Setup Configuration
      */
@@ -19,72 +19,41 @@ class conf extends get_conf {
     }
 
     /*
-     * Error Controller
+     * Get Real / Actual File Name
      */
 
-    protected function ERROR($arg = null) {
-
-        while (ob_get_contents()) {
-            ob_end_clean();
-        }
-
-        $path = ROOT . $this->PATH('ACTIVE_APP');
-
-        if (file_exists($path . 'err.php')) {
-            require $path . 'err.php';
-
-            if (class_exists('err')) {
-                $class = new \err($arg);
-            } else {
-                require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
-            }
-
-            if (isset($class) && method_exists('err', $arg)) {
-                $class->$arg();
-            } else {
-                require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
-            }
-        } else {
-            require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
-        }
-
-        die();
-    }
-
-    /*
-     * Real / Actual File Name
-     */
-
-    protected function get_file($path, $type = 'CONTROLLER') {
+    protected function GET_FILE($path, $type = 'VIEW') {
         $call_file = basename($path);
 
-        if ($type === 'CONTROLLER') {
-            $the_file = $this->KEYS['CONTROLLER']['P'] . $call_file . $this->KEYS['CONTROLLER']['S'];
+        if ($type === 'VIEW') {
+            $the_file = $this->KEYS['VIEW']['P'] . $call_file . $this->KEYS['VIEW']['S'];
         } elseif ($type === 'AJAX') {
             $the_file = $this->KEYS['AJAX']['P'] . $call_file . $this->KEYS['AJAX']['S'];
         }
 
         return ($path === $call_file) ? $the_file : dirname($path) . '/' . $the_file;
-        unset($path, $type, $call_file, $the_file);
     }
 
     /*
-     * File / Alice Name
+     * Get File / Alice Name
      */
 
-    protected function get_name($path, $type = 'CONTROLLER') {
+    protected function GET_NAME($path, $type = 'VIEW') {
         $call_file = basename($path);
 
         $the_keys = '';
-        if ($type === 'CONTROLLER') {
-            $the_keys = [$this->KEYS['CONTROLLER']['P'], $this->KEYS['CONTROLLER']['S']];
+        if ($type === 'VIEW') {
+            $the_keys = [$this->KEYS['VIEW']['P'], $this->KEYS['VIEW']['S']];
         } elseif ($type === 'AJAX') {
             $the_keys = [$this->KEYS['AJAX']['P'], $this->KEYS['AJAX']['S']];
         }
 
         $the_file = str_replace($the_keys, '', $call_file);
         return ($path === $call_file) ? $the_file : dirname($path) . '/' . $the_file;
-        unset($path, $type, $call_file, $the_keys);
+    }
+
+    protected function IS_APP_STRINGS() {
+        return (strlen($this->APP['STRINGS']) > 2 && is_file(ROOT . $this->PATH('ACTIVE_APP') . $this->APP['STRINGS']));
     }
 
 }

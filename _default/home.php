@@ -1,34 +1,36 @@
 <?php
 
+use VP\Controller\Apps;
+
 if (!defined('MAIN')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
-class home extends VP\Controller\hooks {
-
-    function __construct() {
-        parent::__construct();
-    }
+class home {
 
     public function index() {
 
         /*
          * If Direct Call to Home Controller
          */
+        require Apps::$V->APP_PATH . 'includes/include_all.php';
 
-        if ($this->URL('PATHS')[0] === 'home') {
+        if (Apps::$V->URL('PATHS')[0] === 'home') {
             /*
              * Error
              */
-            $this->ERROR('e404');
+            Apps::$V->RENDER([
+                'TITLE' => 'ERROR',
+                'code' => 404,
+                'file' => Apps::$V->APP_PATH . 'views/404.php'
+            ]);
         } else {
             /*
              * View
              */
-            $this->META_DETAILS['TITLE'] = 'Varphp v' . $this->VARPHP('VERSION');
-            require $this->APP_PATH . 'includes/include_all.php';
-            require $this->APP_PATH . 'view/home.php';
-            $this->RENDER();
+            Apps::$V->RENDER([
+                'file' => Apps::$V->APP_PATH . 'views/home.php'
+            ]);
         }
     }
 

@@ -12,19 +12,19 @@ if (!defined('MAIN')) {
  * Getting User Define Configure and Marge
  */
 
-if (file_exists(ROOT . '_config.php')) {
+if (is_file(ROOT . '_config.php')) {
     require ROOT . '_config.php';
 }
 
 if (class_exists('_config')) {
 
-    class get_conf extends \_config {
+    class Get_Conf extends \_config {
         
     }
 
 } else {
 
-    class get_conf extends Configure {
+    class Get_Conf extends Configure {
         
     }
 

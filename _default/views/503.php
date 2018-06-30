@@ -5,5 +5,5 @@ if (!defined('MAIN')) {
 ?>
 <div class="main">
     <h1>503 Error</h1>
-    <h1>Under Construction Or Down For Maintenance</h1>
+    <h1>Under Construction Or Down for Maintenance</h1>
 </div>

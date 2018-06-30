@@ -10,7 +10,7 @@ if (!defined('MAIN')) {
  * Main Configure Class File
  */
 
-class configure {
+class Configure {
 
     public $APP;
     public $KEYS;
@@ -18,6 +18,19 @@ class configure {
     public $META;
     public $OPT;
     public $EXTRA;
+    public $URI_ARR;
+    public $HEADER_SERVER;
+    public $AJAX_DETAILS;
+    public $SUB_PATHS;
+    public $PAGE_ACCEPT_METHODS;
+    public $APP_URL;
+    public $APP_PATH;
+    public $APP_STRINGS;
+    public $HEADER;
+    public $FOOTER;
+    public $ADD_FUNC;
+    public $LOAD_TAGS;
+    public $META_DETAILS;
 
     function __construct() {
 
@@ -42,13 +55,13 @@ class configure {
              */
             'ACTIVE' => 'default',
             /*
-             * Active Plugins Directory Name
-             */
-            'ACTIVE_PLUGINS' => [],
-            /*
              * Active Autoload Files
              */
             'ACTIVE_AUTOLOADS' => [],
+            /*
+             * Active Plugins Directory Name
+             */
+            'ACTIVE_PLUGINS' => [],
             /*
              * App Mode
              * [run, maintain]
@@ -57,28 +70,71 @@ class configure {
             /*
              * App Environment
              * [develop, publish]
+             * Server Default If not set
              */
             'ENVT' => 'develop',
             /*
+             * Static Strings JSON File Path
+             */
+            'STRINGS' => '',
+            /*
+             * Minify Payload
+             * Minify only when app environment is 'publish'
+             */
+            'MIN_PAYLOAD' => true,
+            /*
+             * View Request Method Type
+             * View Request Schema
+             */
+            'VIEW' => [
+                /*
+                 * Accept Request Methods
+                 * Set to `any` for All kind of Request Methods
+                 */
+                'METHODS' => ['get', 'post'],
+                /*
+                 * Accept Request Schema
+                 * Set to `any` for All Schemas
+                 */
+                'SCHEME' => ['http', 'https'],
+            ],
+            /*
              * Ajax Request Method Type
-             * Ajax Request From
+             * Ajax Request From (Inbound, Outbound)
+             * Ajax Request Schema
              */
             'AJAX' => [
                 /*
                  * Request Method 
                  */
-                'METHODS' => 'ANY',
+                'METHODS' => ['get', 'post'],
                 /*
-                 * Request From 
-                 * [IN, OUT, BOTH]
+                 * Accept Request Schema
+                 * Set to `any` for All Schemas
                  */
-                'FROM' => 'BOTH'
+                'SCHEME' => ['http', 'https'],
+                /*
+                 * Request From
+                 * Set to `any` to get request from any server
+                 * [in, out], host
+                 */
+                'FROM' => 'any',
+                /*
+                 * List of Request From Hosts
+                 * Add app host as well
+                 */
+                'FROM_HOSTS' => []
             ],
             /*
-             * Accept HTTP Request Methods
-             * Set to `ANY` for All kind of Request Methods
+             * Dynamic Error Page
+             * Files Path
              */
-            'ACCEPT_METHODS' => ['GET', 'POST'],
+            'ERROR' => [
+                403 => '',
+                404 => '',
+                405 => '',
+                503 => ''
+            ]
         ];
 
         /*
@@ -87,7 +143,7 @@ class configure {
          * [P = Primary, S = Secondary]
          */
         $this->KEYS = [
-            'CONTROLLER' => [
+            'VIEW' => [
                 'P' => '',
                 'S' => ''
             ],
@@ -161,6 +217,7 @@ class configure {
         $allDirs = [
             'VP' => '__VP/',
             'SYS' => '__VP/system/',
+            'INCLUDES' => '__VP/includes/',
             'PLUGINS' => '__PLUGINS/',
             'AUTOLOADS' => '__AUTOLOADS/',
             'TMP' => '__TMP/',
@@ -195,7 +252,7 @@ class configure {
      */
 
     public function MAINTAIN() {
-        return ($this->APP['MODE'] === 'maintain' || file_exists(ROOT . '.maintain'));
+        return ($this->APP['MODE'] === 'maintain' || is_file(ROOT . '.maintain'));
     }
 
     /*
@@ -203,7 +260,7 @@ class configure {
      */
 
     public function AUTOLOAD_ACTIVE($name) {
-        if (in_array($name, $this->APP['ACTIVE_AUTOLOADS']) && file_exists(ROOT . $this->PATH('AUTOLOADS') . $name)) {
+        if (in_array($name, $this->APP['ACTIVE_AUTOLOADS']) && is_file(ROOT . $this->PATH('AUTOLOADS') . $name)) {
             return $this->PATH('AUTOLOADS') . $name;
         }
         return false;
@@ -221,12 +278,12 @@ class configure {
     }
 
     /*
-     * Varphp System Details
+     * Varphp Details
      */
 
     public function VARPHP($n) {
         $details = [
-            'VERSION' => '3.8',
+            'VERSION' => '4.0',
             'STATUS' => 'Stable'
         ];
         return (array_key_exists($n, $details)) ? $details[$n] : false;
@@ -234,7 +291,7 @@ class configure {
 
     /*
      * Setting up the Configuration
-      ## DO NOT CALL THIS FUNCTION ##
+     * # DO NOT CALL THIS FUNCTION #
      */
 
     protected function SETS() {
@@ -252,9 +309,7 @@ class configure {
                 break;
         }
 
-        if (function_exists('date_default_timezone_set')) {
-            date_default_timezone_set($this->APP['TIMEZONE']);
-        }
+        ini_set('memory_limit', $this->OPT['MEMORY_LIMIT']);
 
         if (strlen($this->OPT['PROTOCOL']) < 1) {
 
@@ -271,12 +326,12 @@ class configure {
             ini_set('session.cookie_secure', 1);
         }
 
-        ini_set('memory_limit', $this->OPT['MEMORY_LIMIT']);
-
         if ($this->OPT['COOKIE_HTTP'] === true) {
             ini_set('session.cookie_httponly', 1);
             ini_set('session.use_only_cookies', 1);
         }
+
+        date_default_timezone_set($this->APP['TIMEZONE']);
     }
 
 }

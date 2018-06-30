@@ -4,21 +4,6 @@
  * Main / BootLoader / BootStrap
  */
 
-/*
- * Cleaning all Variables
- */
-
-foreach (array_keys(get_defined_vars()) as $var) {
-    if ($var === 'GLOBALS' || $var === '_POST' || $var === '_GET' || $var === '_COOKIE' ||
-            $var === '_FILES' || $var === '_REQUEST' || $var === '_SERVER' || $var === '_ENV') {
-
-        continue;
-    }
-    $var = null;
-    unset($var);
-}
-clearstatcache();
-
 if (!defined('ROOT') || !defined('PATH')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }

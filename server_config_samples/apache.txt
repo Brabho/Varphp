@@ -14,8 +14,8 @@ Options -Indexes
     RewriteRule ^(.+)$ index.php/$1 [QSA,L]
 </IfModule>
 
+## Varphp Set Root Path ** Recommend ** ##
+SetEnv ROOT_PATH "/var/www/html/varphp/"
+
 ## Varphp Set Static Error File Path ##
 SetEnv ERROR_PATH "__VP/includes/error.php"
-
-## Varphp Set Root Path (* Recommend *) ##
-SetEnv ROOT_PATH "/var/www/html/varphp/"

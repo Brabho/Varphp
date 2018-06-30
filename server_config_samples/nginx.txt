@@ -15,17 +15,25 @@ server {
     }
 
     location /varphp/ {
-        ## Varphp Rewrite URL ##
+        ## Varphp Rewrite URL ** Recommend ** ##
         try_files $uri /varphp/index.php?$args;
     }
+
+	# Static Error File Path
+	error_page 404 @404;
+
+	location @404 {
+		try_files $uri /varphp/__VP/includes/error.php;
+		internal;
+	}
 
     ## For Only PHP ##
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
     	include fastcgi_params;
 
-        ## Varphp Set Root Path (* Recommend *) ##
+        ## Varphp Set Root Path ** Recommend ** ##
     	fastcgi_param ROOT_PATH "/var/www/html/varphp/";
 
         ## Varphp Set Static Error File Path ##
@@ -40,7 +48,7 @@ server {
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include        fastcgi_params;
 
-        ## Varphp Set Root Path (* Recommend *) ##
+        ## Varphp Set Root Path ** Recommend ** ##
     	fastcgi_param ROOT_PATH "/var/www/html/varphp/";
 
         ## Varphp Set Static Error File Path ##

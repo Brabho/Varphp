@@ -2,29 +2,42 @@
 
 namespace VP\Controller;
 
-use VP\Controller\urls;
+use VP\Controller\Urls;
 
 if (!defined('MAIN')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
 }
 
 /*
- * Render Class
- * Rendering Output
+ * Render Class Controller
+ * Rendering Payload or Error
  */
 
-class render extends urls {
-
-    public $HEADER;
-    public $FOOTER;
-    public $ADD_FUNC;
-    public $META_DETAILS;
+class Render extends Urls {
 
     function __construct() {
         parent::__construct();
 
-        $this->HEADER = ROOT . $this->PATH('VP', 'includes') . 'header.php';
-        $this->FOOTER = ROOT . $this->PATH('VP', 'includes') . 'footer.php';
+        /*
+         * Adding Static Strings to PHP
+         */
+        if ($this->IS_APP_STRINGS()) {
+            $json_strings = file_get_contents($this->APP_PATH . $this->APP['STRINGS']);
+            $this->APP_STRINGS = json_decode($this->TRIMS($json_strings), true);
+            unset($json_strings);
+        }
+
+        $this->HEADER = ROOT . $this->PATH('INCLUDES') . 'header.php';
+        $this->FOOTER = ROOT . $this->PATH('INCLUDES') . 'footer.php';
+
+        $this->LOAD_TAGS = [
+            'ICON' => [
+                'URL' => '',
+                'TYPE' => ''
+            ],
+            'CSS' => [],
+            'JS' => []
+        ];
 
         $this->ADD_FUNC = [
             'BEFORE_HEAD' => [],
@@ -35,7 +48,7 @@ class render extends urls {
         ];
 
         $this->META_DETAILS = [];
-        if ($this->HOME()) {
+        if ($this->IS_HOME()) {
 
             $this->META_DETAILS['TITLE'] = $this->APP['NAME'];
             $this->META_DETAILS['DESCRIPTION'] = $this->META['DESCRIPTION'];
@@ -66,9 +79,10 @@ class render extends urls {
 
     /*
      * Calling Added Function
+     * # DO NOT CALL THIS FUNCTION #
      */
 
-    public function CALL_FUNCS($para) {
+    protected function CALL_FUNCS($para) {
         if (array_key_exists($para, $this->ADD_FUNC)) {
             foreach ($this->ADD_FUNC[$para] as $func) {
                 if (function_exists($func)) {
@@ -82,51 +96,89 @@ class render extends urls {
 
     /*
      * Final Rendering
+     * (int) $arr['code'] = Response Code
+     * (str) $arr['file'] = path/to/file
+     * (str) $arr['type'] = error / view
+     * (str) $arr['TITLE']
+     * (str) $arr['DESCRIPTION']
+     * (str) $arr['KEYWORDS']
      */
 
-    protected function RENDER() {
+    public function RENDER($arr = []) {
 
-        $output_buffer = '';
-        while (ob_get_contents()) {
-            $output_buffer .= ob_get_contents();
-            ob_end_clean();
+        if (!isset($arr['code'])) {
+            $arr['code'] = 200;
+        }
+        if (!isset($arr['file']) && $arr['type'] === 'error') {
+            $arr['code'] = 404;
+            $arr['file'] = ROOT . $this->APP['ERROR'][$arr['code']];
         }
 
+        if (isset($arr['TITLE'])) {
+            $this->META_SET([
+                'TITLE' => $arr['TITLE']
+            ]);
+        }
+
+        if (isset($arr['DESCRIPTION'])) {
+            $this->META_SET([
+                'DESCRIPTION' => $arr['DESCRIPTION']
+            ]);
+        }
+
+        if (isset($arr['KEYWORDS'])) {
+            $this->META_SET([
+                'KEYWORDS' => $arr['KEYWORDS']
+            ]);
+        }
+
+        if (count($this->URL('PATHS')) > $this->SUB_PATHS ||
+                preg_match('@\.php@i', $this->URL('FPATH'))) {
+
+            $arr['code'] = 404;
+            $arr['file'] = ROOT . $this->APP['ERROR'][$arr['code']];
+        } elseif (!in_array(strtolower($_SERVER['REQUEST_METHOD']), $this->PAGE_ACCEPT_METHODS)) {
+
+            $arr['code'] = 405;
+            $arr['file'] = ROOT . $this->APP['ERROR'][$arr['code']];
+        }
+
+        http_response_code($arr['code']);
+
         /*
-         * Finally Rendering
+         * Finally Rendering Payload
          */
+        if (is_array($arr['file'])) {
 
-        if (count($this->URL('PATHS')) > $this->SUB_PATHS) {
-            $this->ERROR('e404');
-        } elseif (!in_array($_SERVER['REQUEST_METHOD'], $this->PAGE_ACCEPT_METHODS)) {
-            $this->ERROR('e405');
-        } else {
-
-            if (file_exists($this->HEADER)) {
+            if (is_file($this->HEADER)) {
                 require $this->HEADER;
             }
 
-            echo $output_buffer;
+            foreach ($arr['file'] as $file) {
+                if (is_file($file)) {
+                    require $file;
+                }
+            }
 
-            if (file_exists($this->FOOTER)) {
+            if (is_file($this->FOOTER)) {
                 require $this->FOOTER;
             }
-        }
+        } elseif (is_file($arr['file'])) {
 
-        /*
-         * Cleaning all Variables
-         */
-
-        foreach (array_keys(get_defined_vars()) as $var) {
-            if ($var === 'GLOBALS' || $var === '_POST' || $var === '_GET' || $var === '_COOKIE' ||
-                    $var === '_FILES' || $var === '_REQUEST' || $var === '_SERVER' || $var === '_ENV') {
-
-                continue;
+            if (is_file($this->HEADER)) {
+                require $this->HEADER;
             }
-            $var = null;
-            unset($var, $output_buffer);
+
+            require $arr['file'];
+
+            if (is_file($this->FOOTER)) {
+                require $this->FOOTER;
+            }
+        } else {
+            require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
         }
-        clearstatcache();
+
+        die();
     }
 
 }

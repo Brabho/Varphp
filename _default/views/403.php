@@ -5,5 +5,5 @@ if (!defined('MAIN')) {
 ?>
 <div class="main">
     <h1>403 Error</h1>
-    <h1>Request Method not allow</h1>
+    <h1>Forbidden</h1>
 </div>

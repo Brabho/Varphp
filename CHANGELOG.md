@@ -1,29 +1,68 @@
 # Change Log & History
 
-#### -
-    Stable Version 3.8
+#### 30-06-2018
+	Stable | 4.0
+	Review All Files
+	Minor Bugs Fixed
+
+	Added:
+		Support PHP 7.2
+		MIN_PAYLOAD						"Minify Payload when app environment is `publish`"
+		$APP_STRINGS 					"Static Strings. Access from PHP & JS. Allow JSON data only"
+		LOAD_TAGS[]						"Quickly add FavIcon, CSS & JS Tags"
+		REQUEST SCHEME					"VIEW & AJAX"
+		AJAX HOST Filter				"Whitelist: Accept Outbound Hosts Request"
+		VIEW & AJAX Request Separated 	"Separated Request, Method & Scheme"
+
+	Improved:
+		Stability
+		Performance
+		Error Handler
+		Comments
+
+	Changes:
+		RENDER() 						"View or Error type & File path with response code"
+		Apps::$V 						"Replace with Local Variable/App Variable"
+											Explace:
+												From > echo $this->APP['NAME']
+												To   > echo Apps:$V->APP['NAME']
+
+		App controller independent		"No Inherit"
+		Use NameSpace					"Use NameSpace whenever using App Variable `use VP\Controller\Apps`"
+
+		Major Changes in Core
+		All config settings should be in small letter.
+				Example:
+				From > $this->APP['AJAX']['METHODS'] = ['GET', 'POST'];
+				To   > $this->APP['AJAX']['METHODS'] = ['get', 'post'];
+
+	Removed:
+		Error Controller				"use RENDER instead"
+
+#### 10-02-2018
+    Stable | 3.8
     Bugs Fixed
-    Stability Improved
 
     Improved:
+		Stability
         Main Controller
         AJAX Controller
         Route or Routing
 
     Added:
-        In Page Request Method Filter   "PAGE_ACCEPT_METHODS"
+        PAGE_ACCEPT_METHODS   	"In Page Request Method Filter"
 
 #### 13-11-2017
-    Stable Version 3.7.4
+    Stable | 3.7.4
     Bugs Fixed
     Stability Improved
 
 #### 12-07-2017
-    Stable Version 3.7.2
+    Stable | 3.7.2
     Stability Improved
 
 #### 06-06-2017
-    Stable Version 3.7
+    Stable | 3.7
     Nginx Supported
     HHVM Supported
     Security Improved
@@ -32,7 +71,7 @@
         `ACCEPT_METHODS`
 
 #### 26-05-2017
-    Stable Version 3.6
+    Stable | 3.6
     Review All Files
     Stability Improved
 
@@ -41,7 +80,7 @@
         APP_PATH
 
 #### 10-05-2017
-    Stable Version 3.5
+    Stable | 3.5
 
     Improved:
         Stability
@@ -51,13 +90,13 @@
         apps.php
 
 #### 01-05-2017
-    Stable Version 3.4
+    Stable | 3.4
     Stability Improved
     Tags Attribute Changes
     Ajax Controller Improved
 
 #### 23-03-2017
-    Stable Version 3.3
+    Stable | 3.3
 
     Added:
         Dynamic Method
@@ -70,13 +109,13 @@
         render.php
 
 #### 09-03-2017
-    Stable Version 3.1
+    Stable | 3.1
 
     Improved:
         URI Controller
 
 #### 04-03-2017
-    Stable Version 3.0
+    Stable | 3.0
 
     Improved:
         Security
@@ -106,7 +145,7 @@
         Error Shortcut Controller
 
 #### 12-02-2017
-    Stable Version 2.12
+    Stable | 2.12
     Review All Files
 
     Improved:
@@ -118,7 +157,7 @@
         conf.php
 
 #### 08-02-2017
-    Stable Version 2.11
+    Stable | 2.11
     Major Bugs Fixed
 
     Improved:
@@ -128,7 +167,7 @@
         render.php
 
 #### 04-02-2017
-    Stable Version 2.10
+    Stable | 2.10
 
     Improved:
         App Controller
@@ -137,14 +176,14 @@
         boot.php
 
 #### 28-01-2017
-    Stable Version 2.9
+    Stable | 2.9
 
     Improved:
         Autoload
         configure.php
 
 #### 10-01-2017
-    Stable Version 2.8
+    Stable | 2.8
     Review All Files
 
     Removed:
@@ -152,21 +191,21 @@
         ob_start();
 
 #### 30-12-2016
-    Stable Version 2.7
+    Stable | 2.7
     Dynamic Method Added
     Method Bug Fixed
 
 #### 12-12-2016
-    Stable Version 2.6.4
+    Stable | 2.6.4
     Stability Improved
     Review All Files
 
 #### 28-11-2016
-    Stable Version 2.6
+    Stable | 2.6
     Few Major Bugs Fixed
 
 #### 23-11-2016
-    Stable Version 2.5
+    Stable | 2.5
     Review All Files
 
     Added:
@@ -183,7 +222,7 @@
         In Body Plug
 
 #### 07-11-2016
-    Stable Version 2.3
+    Stable | 2.3
     Few Minor Bugs Fixed
 
     Improved:
@@ -191,21 +230,21 @@
         index Controller
 
 #### 01-11-2016
-    Stable Version 2.2
+    Stable | 2.2
     Stability Improved
 
 #### 26-10-2016
-	Stable Version 2.1.1
+	Stable | 2.1.1
 	Stability improved
 
 #### 08-10-2016
-	Stable Version 2.1
+	Stable | 2.1
 	Minor Bug Fixed
 	Review All Files
 	Dynamic Controller Added
 
 #### 27-09-2016
-	Beta Version 2.0
+	Beta | 2.0
 
 #### 2013
 	Founded

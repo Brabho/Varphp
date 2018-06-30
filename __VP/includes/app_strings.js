@@ -1,0 +1,1 @@
+function APP_STRINGS(e,t){var n=!1;if(window.XMLHttpRequest)n=new XMLHttpRequest;else if(window.ActiveXObject)try{n=new ActiveXObject("Msxml2.XMLHTTP")}catch(e){try{n=new ActiveXObject("Microsoft.XMLHTTP")}catch(e){n=!1}}n&&(n.open("GET",e,!0),n.addEventListener("load",function(){t(JSON.parse(this.responseText.trim()))},!1),n.send())}

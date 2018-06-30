@@ -2,7 +2,7 @@
 
 namespace VP\Controller;
 
-use VP\Controller\urls;
+use VP\Controller\Hooks;
 
 if (!defined('MAIN')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
@@ -16,85 +16,92 @@ if (!defined('MAIN')) {
  * Ajax Controller
  */
 
-class apps extends urls {
+class Apps extends Hooks {
+
+    public static $V;
 
     function __construct() {
         parent::__construct();
 
         /*
-         * Error If Exists index.php
+         * Maintain Mode
          */
 
-        if (strtolower($this->URL('PATHS')[0]) === 'index.php' ||
-                preg_match('@index\.php@i', $this->URL('FPATH'))) {
-
-            $this->ERROR('e404');
-        } elseif (preg_match('@\.php@i', $this->URL('FPATH'))) {
-
-            $this->ERROR('e404');
+        if ($this->MAINTAIN()) {
+            $this->RENDER([
+                'code' => 503,
+                'type' => 'error'
+            ]);
         } else {
 
+            $this->V();
+
             /*
-             * Maintain Mode
+             * App Controller
              */
-
-            if ($this->MAINTAIN()) {
-                $this->ERROR('e503');
+            if ($this->AJAX()) {
+                $this->Ajax_Ctrl();
             } else {
-
-                /*
-                 * Checking Accepted Methods
-                 */
-
-                $accept_methods = false;
-
-                if ($this->APP['ACCEPT_METHODS'] === 'ANY') {
-                    $accept_methods = true;
-                } elseif (in_array($_SERVER['REQUEST_METHOD'], $this->APP['ACCEPT_METHODS'])) {
-                    $accept_methods = true;
-                }
-
-                /*
-                 * Final Rendering
-                 */
-
-                if ($accept_methods) {
-                    if ($this->AJAX()) {
-                        $this->ajax_ctrl();
-                    } else {
-                        $this->view_ctrl();
-                    }
-                } else {
-                    $this->ERROR('e405');
-                }
+                $this->View_Ctrl();
             }
         }
+    }
+
+    private function V() {
+        self::$V = $this;
     }
 
     /*
      * App View Controller
      */
 
-    private function view_ctrl() {
-        $path = ROOT . $this->PATH('ACTIVE_APP');
+    private function View_Ctrl() {
+
+        $req = null;
+        $schema = null;
+
+        /*
+         * Auth
+         * Request Method
+         */
+        if ($this->APP['VIEW']['METHODS'] === 'any') {
+            $req = true;
+        } elseif (in_array($this->HEADER_SERVER['METHOD'], $this->APP['VIEW']['METHODS'])) {
+            $req = true;
+        }
+
+        /*
+         * Auth
+         * Request Schema
+         */
+        if ($this->APP['VIEW']['SCHEME'] === 'any') {
+            $schema = true;
+        } elseif (in_array($this->HEADER_SERVER['SCHEME'], $this->APP['VIEW']['SCHEME'])) {
+            $schema = true;
+        }
+
+        if (!$req || !$schema) {
+            $this->RENDER([
+                'code' => 404,
+                'type' => 'error'
+            ]);
+        }
 
         /*
          * MainController (Check & Call)
          */
 
         $main_ctrl = false;
+        $maincontroller = $this->GET_FILE($this->APP_PATH . 'maincontroller') . '.php';
 
-        $maincontroller = $this->get_file($path . 'maincontroller') . '.php';
-
-        if (file_exists($maincontroller)) {
+        if (is_file($maincontroller)) {
 
             require $maincontroller;
 
-            if (class_exists('maincontroller')) {
+            if (class_exists('MainController')) {
 
                 $main_ctrl = true;
-
-                $main_init = new \maincontroller();
+                $main_init = new \MainController();
                 $main_init->init();
             }
         }
@@ -105,7 +112,11 @@ class apps extends urls {
              * If no Main Controller 
              */
 
-            if ($this->HOME()) {
+            $call = null;
+            $class = null;
+            $method = null;
+
+            if ($this->IS_HOME()) {
                 $class = 'home';
             } elseif (array_key_exists(0, $this->URL('PATHS'))) {
                 $class = $this->URL('PATHS')[0];
@@ -119,30 +130,39 @@ class apps extends urls {
             $param = $this->URL('PATHS');
             array_shift($param);
 
-            $ctrl_file = $this->get_file($path . $class) . '.php';
-            if (file_exists($ctrl_file)) {
+            $ctrl_file = $this->GET_FILE($this->APP_PATH . $class) . '.php';
+            if (is_file($ctrl_file)) {
                 require $ctrl_file;
                 $class = str_replace('-', '_', $class);
                 if (class_exists($class)) {
                     $call = new $class($param);
                 } else {
-                    $this->ERROR('e404');
+                    $this->RENDER([
+                        'code' => 404,
+                        'type' => 'error'
+                    ]);
                 }
 
                 /*
                  * Dynamic Controller 
                  */
-            } elseif (file_exists($this->get_file($path . 'dynamic') . '.php')) {
-                $ctrl_file = $this->get_file($path . 'dynamic') . '.php';
+            } elseif (is_file($this->GET_FILE($this->APP_PATH . 'dynamic') . '.php')) {
+                $ctrl_file = $this->GET_FILE($this->APP_PATH . 'dynamic') . '.php';
                 require $ctrl_file;
                 if (class_exists('dynamic')) {
                     $call = new \dynamic($param);
                     $class = 'dynamic';
                 } else {
-                    $this->ERROR('e404');
+                    $this->RENDER([
+                        'code' => 404,
+                        'type' => 'error'
+                    ]);
                 }
             } else {
-                $this->ERROR('e404');
+                $this->RENDER([
+                    'code' => 404,
+                    'type' => 'error'
+                ]);
             }
 
             /*
@@ -162,76 +182,79 @@ class apps extends urls {
                         $call->dynamic($param);
                         array_shift($param);
                     } else {
-                        $this->ERROR('e404');
+                        $this->RENDER([
+                            'code' => 404,
+                            'type' => 'error'
+                        ]);
                     }
                 } elseif (method_exists($class, 'index')) {
                     $call->index($param);
                 } else {
-                    $this->ERROR('e404');
+                    $this->RENDER([
+                        'code' => 404,
+                        'type' => 'error'
+                    ]);
                 }
             }
         }
-        unset($main_ctrl, $path, $call, $class, $method, $param, $direct);
+        unset($main_ctrl, $call, $class, $method, $param, $direct);
     }
 
     /*
      * App Ajax Controller
      */
 
-    private function ajax_ctrl() {
+    private function Ajax_Ctrl() {
+
+        $req = null;
+        $schema = null;
+        $from = null;
+        $path = null;
 
         /*
          * Auth
          * Request Method
          */
-
-        $req = null;
-        $from = null;
-        $path = null;
-
-        if ($this->APP['AJAX']['METHODS'] === 'ANY') {
+        if ($this->APP['AJAX']['METHODS'] === 'any') {
             $req = true;
-        } elseif (in_array($this->AJAX_DETAILS['METHOD'], $this->APP['AJAX']['METHODS'])) {
+        } elseif (in_array($this->HEADER_SERVER['METHOD'], $this->APP['AJAX']['METHODS'])) {
             $req = true;
+        }
+
+        /*
+         * Auth
+         * Request Schema
+         */
+        if ($this->APP['AJAX']['SCHEME'] === 'any') {
+            $schema = true;
+        } elseif (in_array($this->HEADER_SERVER['SCHEME'], $this->APP['AJAX']['SCHEME'])) {
+            $schema = true;
         }
 
         /*
          * Auth
          * Request From
          */
+        if ($this->APP['AJAX']['FROM'] === 'any') {
+            $from = true;
+        } elseif ($this->APP['AJAX']['FROM'] === 'host' &&
+                in_array($this->HEADER_SERVER['REFERER_HOST'], $this->APP['AJAX']['FROM_HOSTS'])) {
 
-        switch ($this->APP['AJAX']['FROM']) {
-
-            case 'IN':
-                if ($this->AJAX_DETAILS['FROM'] === 'IN') {
-                    $from = true;
-                }
-                break;
-
-            case 'OUT':
-                if ($this->AJAX_DETAILS['FROM'] === 'OUT') {
-                    $from = true;
-                }
-                break;
-
-            case 'BOTH':
-                $from = true;
-                break;
+            $from = true;
+        } elseif (in_array($this->AJAX_DETAILS['FROM'], $this->APP['AJAX']['FROM'])) {
+            $from = true;
         }
 
         /*
          * Auth
-         * Requested Type
+         * Requested By
          */
+        if (isset($req, $schema, $from)) {
 
-        if (isset($req, $from)) {
-
-            if ($this->AJAX_DETAILS['REQUESTED'] === 'URL') {
-
-                $path = $this->get_file(substr($this->URL('FPATH'), 5), 'AJAX');
-            } elseif ($this->AJAX_DETAILS['REQUESTED'] === 'HEADER') {
-
-                $path = $this->get_file($this->URL('FPATH'), 'AJAX');
+            if ($this->AJAX_DETAILS['REQUESTED_BY'] === 'url') {
+                $path = $this->GET_FILE(substr($this->URL('FPATH'), 5), 'AJAX');
+            } elseif ($this->AJAX_DETAILS['REQUESTED_BY'] === 'header') {
+                $path = $this->GET_FILE($this->URL('FPATH'), 'AJAX');
             }
         }
 
@@ -239,18 +262,20 @@ class apps extends urls {
          * Calling File & Class
          * Method [if exists]
          */
-
-        if (isset($path) && file_exists(ROOT . $path . '.php')) {
+        if (isset($path) && is_file(ROOT . $path . '.php')) {
 
             require ROOT . $path . '.php';
             $path = explode('/', $path);
-            $class = $this->get_name(end($path), 'AJAX');
+            $class = $this->GET_NAME(end($path), 'AJAX');
             $class = str_replace('-', '_', $class);
 
             if (class_exists($class)) {
                 $call = new $class();
             } else {
-                $this->ERROR('e404');
+                $this->RENDER([
+                    'code' => 404,
+                    'type' => 'error'
+                ]);
             }
 
             if (isset($call, $this->URL('QUERIES')[$this->KEYS['AJAX']['QUERY']])) {
@@ -261,10 +286,11 @@ class apps extends urls {
                 }
             }
         } else {
-            $this->ERROR('e404');
+            $this->RENDER([
+                'code' => 404,
+                'type' => 'error'
+            ]);
         }
-
-        unset($req, $from, $path, $call, $class, $method);
     }
 
 }

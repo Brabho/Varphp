@@ -2,7 +2,7 @@
 
 namespace VP\Controller;
 
-use VP\Controller\render;
+use VP\Controller\Render;
 
 if (!defined('MAIN')) {
     require $_SERVER['ROOT_PATH'] . $_SERVER['ERROR_PATH'];
@@ -13,7 +13,7 @@ if (!defined('MAIN')) {
  * Middle / Joint / Marge
  */
 
-class hooks extends render {
+class Hooks extends Render {
 
     function __construct() {
         parent::__construct();
@@ -56,7 +56,7 @@ class hooks extends render {
                     continue;
                 }
                 $plugin_contl = $plugins_path . $plugin . '/controller.php';
-                if ($this->PLUGIN_ACTIVE($plugin) && file_exists($plugin_contl)) {
+                if ($this->PLUGIN_ACTIVE($plugin) && is_file($plugin_contl)) {
                     require $plugin_contl;
                 }
             }

@@ -12,17 +12,19 @@
            | |  | | \ V /| |___ 
            |_|  |_|  \_/  \____|
 
-              Version: 3.8
+              Version: 4.0
  */
 define('ROOT', str_ireplace('\\', '/', dirname(__FILE__)) . '/');
 
-$SCRIPT_NAME = str_ireplace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+$SERVER_SCRIPT_NAME = str_ireplace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 
-if (strlen($SCRIPT_NAME) > 1) {
-    define('PATH', $SCRIPT_NAME . '/');
+if (strlen($SERVER_SCRIPT_NAME) > 1) {
+    define('PATH', $SERVER_SCRIPT_NAME . '/');
 } else {
-    define('PATH', $SCRIPT_NAME);
+    define('PATH', $SERVER_SCRIPT_NAME);
 }
-unset($SCRIPT_NAME);
+
+$SERVER_SCRIPT_NAME = null;
+unset($SERVER_SCRIPT_NAME);
 
 require ROOT . '__VP/system/boot.php';
